@@ -81,6 +81,14 @@
 
         <a class="primary" href="mailto:leon@scheindigital.de">Jetzt Kontakt aufnehmen</a>
       </section>
+
+      <footer class="footer">
+        <p>© 2026 ScheinDigital</p>
+        <div>
+          <a href="/rechtliches#impressum">Impressum</a>
+          <a href="/rechtliches#datenschutz">Datenschutz</a>
+        </div>
+      </footer>
     </main>
   </body>
 </html>
@@ -96,6 +104,10 @@
 
   * {
     box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -232,6 +244,34 @@
 
   .cta p {
     max-width: 720px;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 34px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .footer div {
+    display: flex;
+    gap: 18px;
+  }
+
+  .footer a {
+    color: #bdbdbd;
+    font-size: 0.95rem;
+  }
+
+  .footer a:hover {
+    color: #00d5d5;
   }
 
   @media (max-width: 800px) {
