@@ -22,11 +22,12 @@
       <nav class="nav" aria-label="Hauptnavigation">
         <a href="#probleme">Probleme</a>
         <a href="#leistungen">Leistungen</a>
+        <a href="#ablauf">Ablauf</a>
         <a href="#standort">Standort</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
 
-      <a class="header-cta" href="mailto:leon@scheindigital.de">Analyse sichern</a>
+      <a class="header-cta" href="mailto:leon@scheindigital.de?subject=Kostenlose%20Marketing-Analyse">Analyse sichern</a>
     </header>
 
     <main>
@@ -37,12 +38,12 @@
 
         <p class="subline">
           ScheinDigital hilft Unternehmen dabei, online besser gefunden zu werden,
-          Vertrauen aufzubauen und mehr Kundenanfragen zu gewinnen — mit klarer Strategie,
+          Vertrauen aufzubauen und mehr Kundenanfragen zu gewinnen. Mit klarer Strategie,
           Local SEO, Websites, Ads und verkaufsstarkem Design.
         </p>
 
         <div class="buttons">
-          <a class="primary" href="mailto:leon@scheindigital.de">Kostenlose Analyse sichern</a>
+          <a class="primary" href="mailto:leon@scheindigital.de?subject=Kostenlose%20Marketing-Analyse">Kostenlose Marketing-Analyse sichern</a>
           <a class="secondary" href="#leistungen">Leistungen ansehen</a>
         </div>
       </section>
@@ -130,6 +131,62 @@
         </div>
       </section>
 
+      <section id="ablauf" class="section process">
+        <p class="eyebrow">Ablauf</p>
+        <h2>Erst verstehen. Dann gezielt verbessern.</h2>
+
+        <p class="section-intro">
+          Bevor eine Lösung verkauft wird, wird zuerst geprüft, wo dein Unternehmen aktuell Kunden verliert.
+          Danach entsteht ein klarer Plan für mehr Sichtbarkeit, Vertrauen und Anfragen.
+        </p>
+
+        <div class="process-list">
+          <article class="process-step">
+            <span>01</span>
+            <div>
+              <h3>Analyse</h3>
+              <p>
+                Ich prüfe deine aktuelle Website, dein Google-Profil, deine Sichtbarkeit und deine
+                Anfrage-Struktur.
+              </p>
+            </div>
+          </article>
+
+          <article class="process-step">
+            <span>02</span>
+            <div>
+              <h3>Strategie</h3>
+              <p>
+                Danach wird entschieden, welcher Hebel am meisten Sinn macht: SEO, Website, Ads,
+                Design oder eine Kombination.
+              </p>
+            </div>
+          </article>
+
+          <article class="process-step">
+            <span>03</span>
+            <div>
+              <h3>Umsetzung</h3>
+              <p>
+                Die wichtigsten Maßnahmen werden sauber umgesetzt, damit dein Unternehmen online
+                professioneller und vertrauenswürdiger wirkt.
+              </p>
+            </div>
+          </article>
+
+          <article class="process-step">
+            <span>04</span>
+            <div>
+              <h3>Optimierung</h3>
+              <p>
+                Danach wird nachgeschärft, verbessert und angepasst, damit aus Sichtbarkeit echte
+                Anfragen entstehen.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="section dark">
         <p class="eyebrow">Für wen?</p>
         <h2>Für Unternehmen, die online ernster genommen werden wollen.</h2>
@@ -167,13 +224,24 @@
       </section>
 
       <section id="kontakt" class="section cta">
-        <h2>Lass uns deine Sichtbarkeit prüfen.</h2>
-        <p>
-          Schreib mir kurz, wo dein Unternehmen aktuell steht und was du verbessern möchtest.
-          Ich schaue mir dein Potenzial an und gebe dir eine klare Einschätzung.
-        </p>
+        <div class="cta-card">
+          <p class="eyebrow">Kostenlose Analyse</p>
+          <h2>Finde heraus, wo dein Unternehmen online Kunden verliert.</h2>
 
-        <a class="primary" href="mailto:leon@scheindigital.de">Jetzt Kontakt aufnehmen</a>
+          <p>
+            Ich prüfe deine Website, deine lokale Sichtbarkeit und deine Anfrage-Struktur.
+            Danach bekommst du eine klare Einschätzung, welche Hebel für dein Unternehmen
+            am meisten Sinn machen.
+          </p>
+
+          <div class="cta-points">
+            <span>Website prüfen</span>
+            <span>Google-Sichtbarkeit prüfen</span>
+            <span>Anfrage-Struktur prüfen</span>
+          </div>
+
+          <a class="primary" href="mailto:leon@scheindigital.de?subject=Kostenlose%20Marketing-Analyse">Marketing-Analyse anfragen</a>
+        </div>
       </section>
 
       <footer class="footer">
@@ -434,6 +502,37 @@
     padding: 28px;
   }
 
+  .process {
+    position: relative;
+  }
+
+  .process-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 26px;
+    align-items: start;
+    padding: 28px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .process-step span {
+    color: #00d5d5;
+    font-weight: 950;
+    letter-spacing: 0.08em;
+  }
+
+  .process-step p {
+    margin-bottom: 0;
+  }
+
   .dark {
     background: rgba(255, 255, 255, 0.035);
     border-radius: 34px;
@@ -493,8 +592,34 @@
     padding-bottom: 120px;
   }
 
-  .cta p {
-    max-width: 720px;
+  .cta-card {
+    background:
+      radial-gradient(circle at top right, rgba(0, 213, 213, 0.18), transparent 38%),
+      rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 34px;
+    padding: 56px;
+  }
+
+  .cta-card p {
+    max-width: 760px;
+  }
+
+  .cta-points {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 28px 0 34px;
+  }
+
+  .cta-points span {
+    color: #f5f5f5;
+    border: 1px solid rgba(0, 213, 213, 0.28);
+    background: rgba(0, 213, 213, 0.08);
+    border-radius: 999px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-weight: 750;
   }
 
   .footer {
@@ -568,8 +693,18 @@
       min-height: auto;
     }
 
+    .process-step {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 26px;
+    }
+
     .location-card {
       grid-template-columns: 1fr;
+      padding: 32px;
+    }
+
+    .cta-card {
       padding: 32px;
     }
 
