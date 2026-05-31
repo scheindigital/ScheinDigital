@@ -334,10 +334,47 @@
       </section>
 
       <footer class="footer">
-        <p>© 2026 ScheinDigital</p>
-        <div>
+        <div class="footer-brand">
+          <a class="brand footer-logo" href="/" aria-label="ScheinDigital Startseite">
+            <span class="brand-mark">S</span>
+            <span>ScheinDigital</span>
+          </a>
+
+          <p>Marketing Agentur aus Schortens.</p>
+
+          <div class="social-links">
+            <a href="https://www.instagram.com/scheindigital" target="_blank" rel="noopener noreferrer" aria-label="ScheinDigital auf Instagram">
+              IG
+            </a>
+            <a href="https://wa.me/4917641880516" target="_blank" rel="noopener noreferrer" aria-label="ScheinDigital per WhatsApp kontaktieren">
+              WA
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Navigation</h3>
+          <a href="#leistungen">Leistungen</a>
+          <a href="#ablauf">Ablauf</a>
+          <a href="#ueber-mich">Über mich</a>
+          <a href="#faq">FAQ</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Kontakt</h3>
+          <a href="mailto:leon@scheindigital.de">leon@scheindigital.de</a>
+          <a href="https://wa.me/4917641880516" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Rechtliches</h3>
           <a href="/rechtliches#impressum">Impressum</a>
           <a href="/rechtliches#datenschutz">Datenschutz</a>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 ScheinDigital. Alle Rechte vorbehalten.</p>
         </div>
       </footer>
     </main>
@@ -800,31 +837,75 @@
   }
 
   .footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 34px 0;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 34px;
+    padding: 56px 0 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .footer p {
-    margin: 0;
+  .footer-logo {
+    margin-bottom: 18px;
+  }
+
+  .footer-brand p {
+    margin: 0 0 22px;
     font-size: 0.95rem;
   }
 
-  .footer div {
+  .social-links {
     display: flex;
-    gap: 18px;
+    gap: 12px;
   }
 
-  .footer a {
+  .social-links a {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #f5f5f5;
+    font-weight: 900;
+    font-size: 0.85rem;
+  }
+
+  .social-links a:hover {
+    background: #00d5d5;
+    color: #050505;
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-column h3 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+  }
+
+  .footer-column a {
     color: #bdbdbd;
     font-size: 0.95rem;
   }
 
-  .footer a:hover {
+  .footer-column a:hover {
     color: #00d5d5;
+  }
+
+  .footer-bottom {
+    grid-column: 1 / -1;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
   }
 
   @media (max-width: 1000px) {
@@ -839,6 +920,10 @@
 
     .nav a {
       font-size: 0.82rem;
+    }
+
+    .footer {
+      grid-template-columns: 1fr 1fr;
     }
   }
 
@@ -901,6 +986,11 @@
 
     .cta-card {
       padding: 32px;
+    }
+
+    .footer {
+      grid-template-columns: 1fr;
+      gap: 28px;
     }
 
     .hero {
