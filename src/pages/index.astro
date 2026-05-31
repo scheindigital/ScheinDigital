@@ -24,6 +24,7 @@
         <a href="#leistungen">Leistungen</a>
         <a href="#ablauf">Ablauf</a>
         <a href="#standort">Standort</a>
+        <a href="#faq">FAQ</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
 
@@ -223,6 +224,64 @@
         </div>
       </section>
 
+      <section id="faq" class="section faq">
+        <p class="eyebrow">FAQ</p>
+        <h2>Häufige Fragen vor der Zusammenarbeit.</h2>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Was passiert bei der kostenlosen Analyse?</summary>
+            <p>
+              Ich schaue mir deine aktuelle Website, dein Google-Profil, deine Sichtbarkeit und deine
+              Anfrage-Struktur an. Danach bekommst du eine klare Einschätzung, wo aktuell Potenzial
+              verloren geht.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Muss ich danach direkt Kunde werden?</summary>
+            <p>
+              Nein. Die Analyse ist erstmal dafür da, deine Situation besser zu verstehen und sinnvolle
+              nächste Schritte zu erkennen. Wenn eine Zusammenarbeit Sinn macht, sprechen wir offen darüber.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Warum stehen keine festen Preise auf der Website?</summary>
+            <p>
+              Weil jedes Unternehmen eine andere Ausgangslage hat. Manche brauchen zuerst eine bessere
+              Website, andere mehr lokale Sichtbarkeit, Ads oder bessere Creatives. Erst die Analyse zeigt,
+              welche Lösung wirklich sinnvoll ist.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Arbeitest du nur mit Local SEO?</summary>
+            <p>
+              Nein. Local SEO ist ein wichtiger Bereich, aber ScheinDigital betrachtet das gesamte Problem:
+              Sichtbarkeit, Website, Vertrauen, Anfrageweg, Werbeanzeigen und Design.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Für welche Unternehmen ist ScheinDigital geeignet?</summary>
+            <p>
+              Für lokale Unternehmen, Dienstleister, Handwerker, Praxen, Restaurants, Autohäuser und
+              Unternehmen, die online professioneller auftreten und mehr passende Anfragen gewinnen wollen.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Wie schnell sieht man Ergebnisse?</summary>
+            <p>
+              Das hängt vom Bereich ab. Website- und Strukturverbesserungen können sofort Vertrauen erhöhen.
+              SEO braucht meist mehr Zeit. Ads können schneller Reichweite bringen, brauchen aber trotzdem
+              eine saubere Grundlage.
+            </p>
+          </details>
+        </div>
+      </section>
+
       <section id="kontakt" class="section cta">
         <div class="cta-card">
           <p class="eyebrow">Kostenlose Analyse</p>
@@ -294,7 +353,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 18px;
+    gap: 16px;
     padding: 12px 14px;
     border-radius: 999px;
     background: rgba(8, 8, 8, 0.72);
@@ -325,12 +384,12 @@
   .nav {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 18px;
   }
 
   .nav a {
     color: #bdbdbd;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 700;
   }
 
@@ -586,6 +645,46 @@
 
   .location-box p {
     margin-bottom: 0;
+  }
+
+  .faq-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 36px;
+  }
+
+  .faq-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    padding: 24px 26px;
+  }
+
+  .faq-item summary {
+    cursor: pointer;
+    font-size: 1.15rem;
+    font-weight: 850;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary::after {
+    content: "+";
+    float: right;
+    color: #00d5d5;
+    font-weight: 900;
+  }
+
+  .faq-item[open] summary::after {
+    content: "–";
+  }
+
+  .faq-item p {
+    margin-bottom: 0;
+    max-width: 820px;
   }
 
   .cta {
