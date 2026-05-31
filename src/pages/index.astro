@@ -289,6 +289,45 @@
         </div>
       </section>
 
+      <section id="tipps" class="section insights">
+        <p class="eyebrow">Kurz geprüft</p>
+        <h2>3 Dinge, die deine Online-Sichtbarkeit sofort schwächen.</h2>
+
+        <p class="section-intro">
+          Viele Unternehmen brauchen nicht direkt mehr Werbung. Oft müssen zuerst die einfachen
+          Grundlagen sauber stehen, damit bestehende Aufmerksamkeit überhaupt zu Anfragen wird.
+        </p>
+
+        <div class="insight-grid">
+          <article class="insight-card">
+            <span>01</span>
+            <h3>Dein Google-Profil wirkt leer.</h3>
+            <p>
+              Fehlende Bilder, schwache Leistungen, alte Informationen und wenige Updates senken
+              Vertrauen, bevor Kunden überhaupt deine Website öffnen.
+            </p>
+          </article>
+
+          <article class="insight-card">
+            <span>02</span>
+            <h3>Deine Website führt nicht zur Anfrage.</h3>
+            <p>
+              Wenn Besucher nicht sofort verstehen, was du anbietest, warum sie dir vertrauen sollen
+              und wie sie Kontakt aufnehmen, gehen sie weiter.
+            </p>
+          </article>
+
+          <article class="insight-card">
+            <span>03</span>
+            <h3>Dein Marketing sieht gut aus, verkauft aber nicht.</h3>
+            <p>
+              Schönes Design reicht nicht. Jede Anzeige, Website und Grafik muss eine klare Aufgabe haben:
+              Aufmerksamkeit in Interesse und Interesse in Anfrage verwandeln.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <section id="faq" class="section faq">
         <p class="eyebrow">FAQ</p>
         <h2>Häufige Fragen vor der Zusammenarbeit.</h2>
@@ -977,6 +1016,35 @@
     line-height: 1.3;
   }
 
+  .insight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 36px;
+  }
+
+  .insight-card {
+    min-height: 280px;
+    border-radius: 28px;
+    padding: 30px;
+    background:
+      radial-gradient(circle at top right, rgba(0, 213, 213, 0.1), transparent 36%),
+      rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .insight-card span {
+    display: inline-flex;
+    color: #00d5d5;
+    font-weight: 950;
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+  }
+
+  .insight-card p {
+    margin-bottom: 0;
+  }
+
   .faq-list {
     display: grid;
     gap: 14px;
@@ -1151,7 +1219,8 @@
 
   @media (max-width: 1000px) {
     .grid,
-    .problem-grid {
+    .problem-grid,
+    .insight-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
@@ -1188,7 +1257,8 @@
     }
 
     .grid,
-    .problem-grid {
+    .problem-grid,
+    .insight-grid {
       grid-template-columns: 1fr;
     }
 
@@ -1196,7 +1266,8 @@
       padding: 32px;
     }
 
-    .problem-card {
+    .problem-card,
+    .insight-card {
       min-height: auto;
     }
 
