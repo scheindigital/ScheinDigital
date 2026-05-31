@@ -20,6 +20,7 @@
       </a>
 
       <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#probleme">Probleme</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#standort">Standort</a>
         <a href="#kontakt">Kontakt</a>
@@ -43,6 +44,50 @@
         <div class="buttons">
           <a class="primary" href="mailto:leon@scheindigital.de">Kostenlose Analyse sichern</a>
           <a class="secondary" href="#leistungen">Leistungen ansehen</a>
+        </div>
+      </section>
+
+      <section id="probleme" class="section problems">
+        <p class="eyebrow">Das Problem</p>
+        <h2>Viele Unternehmen verlieren Kunden, bevor sie überhaupt eine Anfrage bekommen.</h2>
+
+        <p class="section-intro">
+          Oft liegt es nicht am Angebot. Es liegt daran, dass potenzielle Kunden das Unternehmen
+          nicht finden, nicht verstehen oder nicht genug Vertrauen aufbauen.
+        </p>
+
+        <div class="problem-grid">
+          <article class="problem-card">
+            <span>01</span>
+            <h3>Zu wenig Sichtbarkeit</h3>
+            <p>
+              Kunden suchen online nach deiner Leistung, aber finden zuerst deine Konkurrenz.
+            </p>
+          </article>
+
+          <article class="problem-card">
+            <span>02</span>
+            <h3>Die Website überzeugt nicht</h3>
+            <p>
+              Eine unklare Website kostet Vertrauen, bevor überhaupt Kontakt aufgenommen wird.
+            </p>
+          </article>
+
+          <article class="problem-card">
+            <span>03</span>
+            <h3>Kein klarer Anfrageweg</h3>
+            <p>
+              Wenn der nächste Schritt nicht einfach ist, verlieren Unternehmen unnötig Anfragen.
+            </p>
+          </article>
+
+          <article class="problem-card">
+            <span>04</span>
+            <h3>Marketing ohne Strategie</h3>
+            <p>
+              Werbung ohne klares Fundament verbrennt Budget, statt planbar Kunden zu bringen.
+            </p>
+          </article>
         </div>
       </section>
 
@@ -293,6 +338,11 @@
     font-size: 1.25rem;
   }
 
+  .section-intro {
+    max-width: 760px;
+    margin-top: 0;
+  }
+
   .buttons {
     display: flex;
     gap: 14px;
@@ -336,6 +386,38 @@
     padding: 90px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     scroll-margin-top: 120px;
+  }
+
+  .problems {
+    padding-top: 100px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 34px;
+  }
+
+  .problem-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 24px;
+    padding: 28px;
+    min-height: 250px;
+  }
+
+  .problem-card span {
+    display: inline-flex;
+    margin-bottom: 28px;
+    color: #00d5d5;
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+  }
+
+  .problem-card p {
+    margin-bottom: 0;
   }
 
   .grid {
@@ -444,7 +526,8 @@
   }
 
   @media (max-width: 1000px) {
-    .grid {
+    .grid,
+    .problem-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -472,12 +555,17 @@
       font-size: 0.88rem;
     }
 
-    .grid {
+    .grid,
+    .problem-grid {
       grid-template-columns: 1fr;
     }
 
     .dark {
       padding: 32px;
+    }
+
+    .problem-card {
+      min-height: auto;
     }
 
     .location-card {
