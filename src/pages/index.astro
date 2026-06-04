@@ -835,19 +835,25 @@
     padding-top: 100px;
   }
 
-  .problem-grid {
+  .problem-grid,
+  .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 18px;
     margin-top: 34px;
   }
 
-  .problem-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+  .problem-card,
+  .card {
+    background: rgba(255, 255, 255, 0.045);
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 24px;
     padding: 28px;
+  }
+
+  .problem-card {
     min-height: 250px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
   }
 
   .problem-card span {
@@ -861,20 +867,6 @@
 
   .problem-card p {
     margin-bottom: 0;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-top: 34px;
-  }
-
-  .card {
-    background: rgba(255, 255, 255, 0.045);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    border-radius: 24px;
-    padding: 28px;
   }
 
   .process-list {
@@ -922,7 +914,8 @@
     max-width: 720px;
   }
 
-  .founder-points {
+  .founder-points,
+  .cta-points {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
@@ -1325,9 +1318,6 @@
   }
 
   .cta-points {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
     margin: 28px 0 34px;
   }
 
@@ -1513,6 +1503,10 @@
   }
 
   @media (max-width: 800px) {
+    html {
+      scroll-padding-top: 120px;
+    }
+
     main {
       width: min(100% - 28px, 1120px);
     }
@@ -1520,6 +1514,7 @@
     .site-header {
       top: 12px;
       width: min(100% - 28px, 1120px);
+      padding: 10px 12px;
     }
 
     .nav {
@@ -1540,6 +1535,16 @@
       font-size: 0.88rem;
     }
 
+    .hero {
+      min-height: auto;
+      padding-top: 115px;
+      padding-bottom: 64px;
+    }
+
+    .section {
+      padding: 64px 0;
+    }
+
     .grid,
     .problem-grid,
     .insight-grid,
@@ -1547,8 +1552,16 @@
       grid-template-columns: 1fr;
     }
 
+    .card,
+    .problem-card,
+    .insight-card,
+    .faq-item {
+      padding: 24px;
+    }
+
     .dark {
-      padding: 32px;
+      margin: 48px 0;
+      padding: 28px;
     }
 
     .problem-card,
@@ -1564,9 +1577,10 @@
 
     .founder-card,
     .why-card,
-    .contact-card {
+    .contact-card,
+    .location-card {
       grid-template-columns: 1fr;
-      padding: 32px;
+      padding: 28px;
     }
 
     .why-item {
@@ -1576,11 +1590,11 @@
 
     .founder-image,
     .founder-image img {
-      min-height: 460px;
+      min-height: 380px;
     }
 
     .location-card {
-      padding: 32px;
+      padding: 28px;
     }
 
     .map-card {
@@ -1600,14 +1614,19 @@
       padding: 22px;
     }
 
+    .process-list,
+    .faq-list {
+      gap: 14px;
+    }
+
+    .buttons,
+    .location-actions {
+      margin-top: 28px;
+    }
+
     .footer {
       grid-template-columns: 1fr;
       gap: 28px;
-    }
-
-    .hero {
-      min-height: auto;
-      padding-top: 130px;
     }
   }
 </style>
