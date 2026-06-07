@@ -1,4 +1,11 @@
 ---
+// =====================================================================
+//  ScheinDigital – Startseite
+//  EINSTELLUNGEN: Trage hier deinen Cal.com-Link ein. Er wird überall
+//  automatisch verwendet (Header, Hero, Kontakt-Sektion).
+// =====================================================================
+const CAL_LINK = "https://cal.com/leon-schein/erstgespraech"; // <-- HIER deinen echten Cal.com-Link eintragen
+const WHATSAPP = "https://wa.me/4917641880516";
 ---
 
 <html lang="de">
@@ -49,13 +56,13 @@
         <a href="#probleme">Probleme</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#ablauf">Ablauf</a>
+        <a href="#vergleich">Vergleich</a>
         <a href="#ueber-mich">Über mich</a>
-        <a href="#standort">Standort</a>
         <a href="#faq">FAQ</a>
-        <a href="#kontakt">Kontakt</a>
+        <a href="#newsletter">Newsletter</a>
       </nav>
 
-      <a class="header-cta" href="#kontakt">Analyse sichern</a>
+      <a class="header-cta" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Erstgespräch buchen</a>
     </header>
 
     <main>
@@ -71,9 +78,11 @@
         </p>
 
         <div class="buttons">
-          <a class="primary" href="#kontakt">Kostenlose Marketing-Analyse sichern</a>
+          <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
           <a class="secondary" href="#leistungen">Leistungen ansehen</a>
         </div>
+
+        <p class="hero-note">Kostenlos &amp; unverbindlich · 15 Minuten · Erst verstehen, dann entscheiden.</p>
       </section>
 
       <section id="probleme" class="section problems">
@@ -118,7 +127,7 @@
 
         <div class="grid">
           <article class="card">
-            <h3>Local SEO & Google Maps</h3>
+            <h3>Local SEO &amp; Google Maps</h3>
             <p>
               Optimierung deiner lokalen Sichtbarkeit, damit Kunden dich bei Google schneller finden,
               dir eher vertrauen und leichter Kontakt aufnehmen.
@@ -126,7 +135,7 @@
           </article>
 
           <article class="card">
-            <h3>Websites & Landingpages</h3>
+            <h3>Websites &amp; Landingpages</h3>
             <p>
               Klare, schnelle Websites mit sauberer Struktur, starken Texten und Fokus auf Anfragen
               statt unnötigem Design-Spielzeug.
@@ -142,7 +151,7 @@
           </article>
 
           <article class="card">
-            <h3>Werbedesign & Creatives</h3>
+            <h3>Werbedesign &amp; Creatives</h3>
             <p>
               Professionelle Anzeigen, Grafiken und visuelle Inhalte, die dein Unternehmen stärker
               wirken lassen und deine Botschaft klarer verkaufen.
@@ -203,6 +212,43 @@
                 Anfragen entstehen.
               </p>
             </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="vergleich" class="section compare">
+        <p class="eyebrow">Der Unterschied</p>
+        <h2>Warum ScheinDigital statt einer Standard-Agentur.</h2>
+
+        <p class="section-intro">
+          Viele Agenturen verkaufen sofort ein Paket. ScheinDigital startet mit der wichtigsten Frage:
+          Wo verlierst du gerade wirklich Kunden? Erst danach kommt die Lösung.
+        </p>
+
+        <div class="compare-grid">
+          <article class="compare-col compare-them">
+            <h3>Standard-Agentur</h3>
+            <ul>
+              <li>Verkauft sofort ein Standardpaket</li>
+              <li>Anonymes Team, wechselnde Ansprechpartner</li>
+              <li>Lange Vertragsbindung</li>
+              <li>Fokus auf Optik statt Anfragen</li>
+              <li>Reporting ohne klaren Plan</li>
+            </ul>
+          </article>
+
+          <article class="compare-col compare-us">
+            <h3>
+              <img class="compare-logo" src="/sd-logo.svg" alt="" />
+              ScheinDigital
+            </h3>
+            <ul>
+              <li>Erst Analyse, dann passende Lösung</li>
+              <li>Ein direkter, persönlicher Ansprechpartner</li>
+              <li>Flexibel, ohne Knebelvertrag</li>
+              <li>Fokus auf echte Kundenanfragen</li>
+              <li>Klarer Plan: Sichtbarkeit → Vertrauen → Anfrage</li>
+            </ul>
           </article>
         </div>
       </section>
@@ -272,7 +318,7 @@
               >
                 Standort ansehen
               </a>
-              <a class="secondary" href="#kontakt">Kontakt aufnehmen</a>
+              <a class="secondary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Erstgespräch buchen</a>
             </div>
           </div>
 
@@ -315,118 +361,24 @@
         </div>
       </section>
 
-      <section id="tipps" class="section insights">
-        <p class="eyebrow">Kurz geprüft</p>
-        <h2>3 Dinge, die deine Online-Sichtbarkeit sofort schwächen.</h2>
-
-        <p class="section-intro">
-          Viele Unternehmen brauchen nicht direkt mehr Werbung. Oft müssen zuerst die einfachen
-          Grundlagen sauber stehen, damit bestehende Aufmerksamkeit überhaupt zu Anfragen wird.
-        </p>
-
-        <div class="insight-grid">
-          <article class="insight-card">
-            <span>01</span>
-            <h3>Dein Google-Profil wirkt leer.</h3>
-            <p>
-              Fehlende Bilder, schwache Leistungen, alte Informationen und wenige Updates senken
-              Vertrauen, bevor Kunden überhaupt deine Website öffnen.
-            </p>
-          </article>
-
-          <article class="insight-card">
-            <span>02</span>
-            <h3>Deine Website führt nicht zur Anfrage.</h3>
-            <p>
-              Wenn Besucher nicht sofort verstehen, was du anbietest, warum sie dir vertrauen sollen
-              und wie sie Kontakt aufnehmen, gehen sie weiter.
-            </p>
-          </article>
-
-          <article class="insight-card">
-            <span>03</span>
-            <h3>Dein Marketing sieht gut aus, verkauft aber nicht.</h3>
-            <p>
-              Schönes Design reicht nicht. Jede Anzeige, Website und Grafik muss eine klare Aufgabe haben:
-              Aufmerksamkeit in Interesse und Interesse in Anfrage verwandeln.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="warum" class="section why">
-        <div class="why-card">
-          <div class="why-copy">
-            <p class="eyebrow">Warum ScheinDigital?</p>
-            <h2>Keine Standardlösung. Erst Analyse, dann Umsetzung.</h2>
-
-            <p>
-              Viele Agenturen verkaufen sofort SEO, Ads oder eine neue Website.
-              ScheinDigital startet anders: Zuerst wird geprüft, wo dein Unternehmen aktuell
-              wirklich Kunden verliert.
-            </p>
-
-            <p>
-              Erst danach wird entschieden, welche Lösung sinnvoll ist. So entsteht kein blindes
-              Marketing, sondern ein klarer Plan für mehr Sichtbarkeit, Vertrauen und Anfragen.
-            </p>
-          </div>
-
-          <div class="why-list">
-            <article class="why-item">
-              <span>01</span>
-              <div>
-                <h3>Problem zuerst verstehen</h3>
-                <p>
-                  Nicht jedes Unternehmen braucht dieselbe Lösung. Erst muss klar sein,
-                  ob Sichtbarkeit, Website, Vertrauen, Design oder Anfrageweg das größte Problem ist.
-                </p>
-              </div>
-            </article>
-
-            <article class="why-item">
-              <span>02</span>
-              <div>
-                <h3>Passende Lösung statt Standardpaket</h3>
-                <p>
-                  SEO, Ads, Website und Design sind nur Werkzeuge. Entscheidend ist,
-                  welches Werkzeug für deine Situation wirklich Ergebnisse bringen kann.
-                </p>
-              </div>
-            </article>
-
-            <article class="why-item">
-              <span>03</span>
-              <div>
-                <h3>Fokus auf Anfragen statt nur Optik</h3>
-                <p>
-                  Marketing soll nicht nur professionell aussehen. Es soll Vertrauen schaffen,
-                  den nächsten Schritt klar machen und echte Kundenanfragen erzeugen.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <section id="faq" class="section faq">
         <p class="eyebrow">FAQ</p>
         <h2>Häufige Fragen vor der Zusammenarbeit.</h2>
 
         <div class="faq-list">
           <details class="faq-item" open>
-            <summary>Was passiert bei der kostenlosen Analyse?</summary>
+            <summary>Was passiert im kostenlosen Erstgespräch?</summary>
             <p>
-              Ich schaue mir deine aktuelle Website, dein Google-Profil, deine Sichtbarkeit und deine
+              Wir schauen uns gemeinsam deine aktuelle Website, dein Google-Profil, deine Sichtbarkeit und deine
               Anfrage-Struktur an. Danach bekommst du eine klare Einschätzung, wo aktuell Potenzial
-              verloren geht.
+              verloren geht. Das Gespräch dauert rund 15 Minuten und ist unverbindlich.
             </p>
           </details>
 
           <details class="faq-item">
             <summary>Muss ich danach direkt Kunde werden?</summary>
             <p>
-              Nein. Die Analyse ist erstmal dafür da, deine Situation besser zu verstehen und sinnvolle
+              Nein. Das Gespräch ist erstmal dafür da, deine Situation besser zu verstehen und sinnvolle
               nächste Schritte zu erkennen. Wenn eine Zusammenarbeit Sinn macht, sprechen wir offen darüber.
             </p>
           </details>
@@ -435,7 +387,7 @@
             <summary>Warum stehen keine festen Preise auf der Website?</summary>
             <p>
               Weil jedes Unternehmen eine andere Ausgangslage hat. Manche brauchen zuerst eine bessere
-              Website, andere mehr lokale Sichtbarkeit, Ads oder bessere Creatives. Erst die Analyse zeigt,
+              Website, andere mehr lokale Sichtbarkeit, Ads oder bessere Creatives. Erst das Gespräch zeigt,
               welche Lösung wirklich sinnvoll ist.
             </p>
           </details>
@@ -468,66 +420,56 @@
       </section>
 
       <section id="kontakt" class="section contact-section">
-        <div class="contact-card">
-          <div class="contact-copy">
-            <p class="eyebrow">Kostenlose Analyse</p>
-            <h2>Finde heraus, wo dein Unternehmen online Kunden verliert.</h2>
+        <div class="contact-cta">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2>Finde heraus, wo dein Unternehmen online Kunden verliert.</h2>
 
+          <p class="contact-lead">
+            Buch dir ein kostenloses 15-Minuten-Erstgespräch. Wir schauen uns deine Website,
+            deine lokale Sichtbarkeit und deine Anfrage-Struktur an und du bekommst eine klare
+            Einschätzung, wo das größte Potenzial liegt.
+          </p>
+
+          <div class="cta-points">
+            <span>Website prüfen</span>
+            <span>Google-Sichtbarkeit prüfen</span>
+            <span>Anfrage-Struktur prüfen</span>
+          </div>
+
+          <div class="contact-actions">
+            <a class="primary contact-primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">
+              Kostenloses Erstgespräch buchen
+            </a>
+            <a class="secondary" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+              Lieber per WhatsApp
+            </a>
+          </div>
+
+          <p class="contact-note">
+            Kostenlos &amp; unverbindlich. Keine Budgetfrage. Erst verstehen, dann sinnvoll entscheiden.
+          </p>
+        </div>
+      </section>
+
+      <section id="newsletter" class="section newsletter-section">
+        <div class="newsletter-card">
+          <div class="newsletter-copy">
+            <p class="eyebrow">Newsletter</p>
+            <h2>Noch nicht bereit für ein Gespräch?</h2>
             <p>
-              Trag nur die wichtigsten Daten ein. Ich prüfe deine Website, deine lokale Sichtbarkeit
-              und deine Anfrage-Struktur und melde mich persönlich mit einer kurzen Einschätzung zurück.
-            </p>
-
-            <div class="cta-points">
-              <span>Website prüfen</span>
-              <span>Google-Sichtbarkeit prüfen</span>
-              <span>Anfrage-Struktur prüfen</span>
-            </div>
-
-            <p class="contact-note">
-              Kein langes Formular. Keine Budgetfrage. Erst verstehen, dann sinnvoll entscheiden.
+              Kein Problem. Trag dich in den Newsletter ein und bekomm regelmäßig einen konkreten
+              Tipp für mehr lokale Sichtbarkeit und mehr Anfragen, direkt umsetzbar, ohne Marketing-Bla.
             </p>
           </div>
 
-          <form class="contact-form" id="analysis-form">
-            <div class="form-grid">
-              <label>
-                <span>Name *</span>
-                <input type="text" name="name" placeholder="Dein Name" required />
-              </label>
-
-              <label>
-                <span>E-Mail *</span>
-                <input type="email" name="email" placeholder="deine@email.de" required />
-              </label>
-
-              <label>
-                <span>Firmenname *</span>
-                <input type="text" name="company" placeholder="Dein Unternehmen" required />
-              </label>
-
-              <label>
-                <span>Stadt / Standort *</span>
-                <input type="text" name="city" placeholder="z. B. Schortens" required />
-              </label>
-
-              <label>
-                <span>Telefonnummer optional</span>
-                <input type="tel" name="phone" placeholder="Für Rückfragen" />
-              </label>
-
-              <label>
-                <span>Website / Google-Profil optional</span>
-                <input type="text" name="website" placeholder="https://..." />
-              </label>
-            </div>
-
-            <button class="primary form-button" type="submit">Kostenlose Analyse anfragen</button>
-
+          <form class="newsletter-form" id="newsletter-form">
+            <label class="sr-only" for="nl-email">E-Mail-Adresse</label>
+            <input id="nl-email" type="email" name="email" placeholder="deine@email.de" required />
+            <button class="primary" type="submit">Eintragen</button>
+            <p class="newsletter-msg" id="newsletter-msg" role="status" aria-live="polite"></p>
             <p class="form-privacy">
-              Mit dem Absenden öffnet sich dein E-Mail-Programm mit den eingetragenen Daten.
-              Es werden über dieses Formular keine Daten auf der Website gespeichert.
-              Weitere Informationen findest du in der <a href="/rechtliches#datenschutz">Datenschutzerklärung</a>.
+              Kein Spam. Abmeldung jederzeit möglich. Mehr Infos in der
+              <a href="/rechtliches#datenschutz">Datenschutzerklärung</a>.
             </p>
           </form>
         </div>
@@ -551,7 +493,7 @@
               </svg>
             </a>
 
-            <a href="https://wa.me/4917641880516" target="_blank" rel="noopener noreferrer" aria-label="ScheinDigital per WhatsApp kontaktieren">
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" aria-label="ScheinDigital per WhatsApp kontaktieren">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M20.5 11.8a8.4 8.4 0 0 1-12.4 7.4L4 20.5l1.3-4a8.4 8.4 0 1 1 15.2-4.7Z"></path>
                 <path d="M9.2 8.6c.2-.4.4-.5.7-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.4.5c-.1.2-.1.4.1.6.5.8 1.2 1.5 2.1 2 .2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.7-.1l1.8.8c.3.1.4.3.4.6v.4c0 .4-.2.7-.5.9-.5.3-1.2.5-2 .4-2.9-.4-5.8-3.1-6.4-6-.2-.8 0-1.5.1-1.8Z"></path>
@@ -564,16 +506,17 @@
           <h3>Navigation</h3>
           <a href="#leistungen">Leistungen</a>
           <a href="#ablauf">Ablauf</a>
+          <a href="#vergleich">Vergleich</a>
           <a href="#ueber-mich">Über mich</a>
-          <a href="#standort">Standort</a>
           <a href="#faq">FAQ</a>
-          <a href="#kontakt">Kontakt</a>
+          <a href="#newsletter">Newsletter</a>
         </div>
 
         <div class="footer-column">
           <h3>Kontakt</h3>
+          <a href={CAL_LINK} target="_blank" rel="noopener noreferrer">Erstgespräch buchen</a>
           <a href="mailto:leon@scheindigital.de">leon@scheindigital.de</a>
-          <a href="https://wa.me/4917641880516" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">WhatsApp</a>
         </div>
 
         <div class="footer-column">
@@ -589,39 +532,40 @@
     </main>
 
     <script is:inline>
-      const form = document.querySelector("#analysis-form");
+      // ============================================================
+      //  Newsletter-Anmeldung -> n8n Webhook
+      //  Trage unten deine n8n-Webhook-URL ein.
+      //  (In n8n: Webhook-Node -> Methode POST -> Pfad z.B. /newsletter)
+      // ============================================================
+      const NEWSLETTER_WEBHOOK = "https://n8n.scheindigital.de/webhook/newsletter"; // <-- anpassen
 
-      form?.addEventListener("submit", (event) => {
+      const nlForm = document.querySelector("#newsletter-form");
+      const nlMsg = document.querySelector("#newsletter-msg");
+
+      nlForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
+        const email = new FormData(nlForm).get("email")?.toString().trim() || "";
+        if (!email) return;
 
-        const formData = new FormData(form);
-        const name = formData.get("name")?.toString().trim() || "";
-        const email = formData.get("email")?.toString().trim() || "";
-        const company = formData.get("company")?.toString().trim() || "";
-        const city = formData.get("city")?.toString().trim() || "";
-        const phone = formData.get("phone")?.toString().trim() || "Nicht angegeben";
-        const website = formData.get("website")?.toString().trim() || "Nicht angegeben";
+        nlMsg.textContent = "Wird gesendet …";
+        nlMsg.className = "newsletter-msg";
 
-        const subject = `Kostenlose Marketing-Analyse - ${company}`;
-        const body = [
-          "Hallo Leon,",
-          "",
-          "ich möchte eine kostenlose Marketing-Analyse anfragen.",
-          "",
-          "Meine Daten:",
-          `Name: ${name}`,
-          `E-Mail: ${email}`,
-          `Firmenname: ${company}`,
-          `Stadt / Standort: ${city}`,
-          `Telefonnummer: ${phone}`,
-          `Website / Google-Profil: ${website}`,
-          "",
-          "Viele Grüße",
-          name,
-        ].join("\n");
+        try {
+          const res = await fetch(NEWSLETTER_WEBHOOK, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, source: "website-newsletter" }),
+          });
 
-        const mailto = `mailto:leon@scheindigital.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailto;
+          if (!res.ok) throw new Error("Request failed");
+
+          nlForm.reset();
+          nlMsg.textContent = "Geschafft! Schau gleich in dein Postfach.";
+          nlMsg.className = "newsletter-msg ok";
+        } catch (err) {
+          nlMsg.textContent = "Da ist etwas schiefgelaufen. Bitte später erneut versuchen.";
+          nlMsg.className = "newsletter-msg error";
+        }
       });
     </script>
   </body>
@@ -654,6 +598,18 @@
   main {
     width: min(1120px, calc(100% - 40px));
     margin: 0 auto;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .site-header {
@@ -713,17 +669,18 @@
     justify-content: center;
     border-radius: 999px;
     padding: 11px 17px;
-    background: rgba(0, 213, 213, 0.14);
-    border: 1px solid rgba(0, 213, 213, 0.35);
-    color: #f5f5f5;
+    background: #00d5d5;
+    border: 1px solid #00d5d5;
+    color: #050505;
     font-weight: 850;
     font-size: 0.92rem;
     white-space: nowrap;
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
   .header-cta:hover {
-    background: #00d5d5;
-    color: #050505;
+    transform: translateY(-2px);
+    opacity: 0.92;
   }
 
   .hero {
@@ -774,6 +731,13 @@
     max-width: 760px;
     margin: 28px 0 0;
     font-size: 1.25rem;
+  }
+
+  .hero-note {
+    margin: 22px 0 0;
+    color: #8d8d8d;
+    font-size: 0.95rem;
+    font-weight: 600;
   }
 
   .section-intro {
@@ -894,6 +858,83 @@
 
   .process-step p {
     margin-bottom: 0;
+  }
+
+  /* ---- Vergleich ---- */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 36px;
+  }
+
+  .compare-col {
+    border-radius: 28px;
+    padding: 36px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+
+  .compare-them {
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .compare-us {
+    background:
+      radial-gradient(circle at top right, rgba(0, 213, 213, 0.16), transparent 42%),
+      rgba(255, 255, 255, 0.045);
+    border-color: rgba(0, 213, 213, 0.3);
+  }
+
+  .compare-col h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+  }
+
+  .compare-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .compare-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .compare-col li {
+    position: relative;
+    padding-left: 32px;
+    color: #cfcfcf;
+    font-size: 1.02rem;
+    line-height: 1.5;
+  }
+
+  .compare-them li::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ff6b6b;
+    font-weight: 900;
+  }
+
+  .compare-us li {
+    color: #f0f0f0;
+  }
+
+  .compare-us li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #00d5d5;
+    font-weight: 900;
   }
 
   .founder-card {
@@ -1173,87 +1214,8 @@
     line-height: 1.3;
   }
 
-  .insight-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-top: 36px;
-  }
-
-  .insight-card {
-    min-height: 280px;
-    border-radius: 28px;
-    padding: 30px;
-    background:
-      radial-gradient(circle at top right, rgba(0, 213, 213, 0.1), transparent 36%),
-      rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-  }
-
-  .insight-card span {
-    display: inline-flex;
-    color: #00d5d5;
-    font-weight: 950;
-    letter-spacing: 0.08em;
-    margin-bottom: 28px;
-  }
-
-  .insight-card p {
-    margin-bottom: 0;
-  }
-
-  .why-card {
-    display: grid;
-    grid-template-columns: 0.95fr 1.05fr;
-    gap: 34px;
-    align-items: center;
-    background:
-      radial-gradient(circle at top left, rgba(0, 213, 213, 0.14), transparent 34%),
-      rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 34px;
-    padding: 56px;
-  }
-
-  .why-copy p {
-    max-width: 680px;
-  }
-
-  .why-list {
-    display: grid;
-    gap: 16px;
-  }
-
-  .why-item {
-    display: grid;
-    grid-template-columns: 58px 1fr;
-    gap: 20px;
-    padding: 24px;
-    border-radius: 24px;
-    background: rgba(0, 0, 0, 0.28);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .why-item span {
-    width: 42px;
-    height: 42px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 213, 213, 0.12);
-    border: 1px solid rgba(0, 213, 213, 0.28);
-    color: #00d5d5;
-    font-size: 0.82rem;
-    font-weight: 950;
-  }
-
   .why-item h3 {
     margin-bottom: 8px;
-  }
-
-  .why-item p {
-    margin: 0;
   }
 
   .faq-list {
@@ -1296,87 +1258,135 @@
     max-width: 820px;
   }
 
+  /* ---- Kontakt / Call-CTA ---- */
   .contact-section {
-    padding-bottom: 120px;
+    padding-bottom: 110px;
   }
 
-  .contact-card {
-    display: grid;
-    grid-template-columns: 0.9fr 1.1fr;
-    gap: 34px;
-    align-items: start;
+  .contact-cta {
+    text-align: center;
     background:
-      radial-gradient(circle at top right, rgba(0, 213, 213, 0.18), transparent 38%),
+      radial-gradient(circle at 50% 0%, rgba(0, 213, 213, 0.2), transparent 55%),
       rgba(255, 255, 255, 0.045);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(0, 213, 213, 0.22);
     border-radius: 34px;
-    padding: 56px;
+    padding: 64px 48px;
   }
 
-  .contact-copy p {
+  .contact-cta .eyebrow,
+  .contact-cta h2,
+  .contact-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-cta h2 {
     max-width: 760px;
   }
 
-  .cta-points {
-    margin: 28px 0 34px;
+  .contact-lead {
+    max-width: 640px;
+    font-size: 1.15rem;
+  }
+
+  .contact-cta .cta-points {
+    justify-content: center;
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 34px;
+  }
+
+  .contact-primary {
+    font-size: 1.08rem;
+    padding: 18px 30px;
   }
 
   .contact-note {
-    font-size: 0.95rem;
+    margin: 24px 0 0;
     color: #8d8d8d;
+    font-size: 0.95rem;
   }
 
-  .contact-form {
-    background: rgba(0, 0, 0, 0.34);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 28px;
-    padding: 30px;
+  /* ---- Newsletter ---- */
+  .newsletter-section {
+    padding-bottom: 120px;
   }
 
-  .form-grid {
+  .newsletter-card {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 34px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 48px;
   }
 
-  .contact-form label {
+  .newsletter-copy h2 {
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    margin-bottom: 16px;
+  }
+
+  .newsletter-copy p {
+    margin: 0;
+    max-width: 520px;
+  }
+
+  .newsletter-form {
     display: grid;
-    gap: 9px;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
   }
 
-  .contact-form label span {
-    color: #f5f5f5;
-    font-size: 0.9rem;
-    font-weight: 800;
-  }
-
-  .contact-form input {
+  .newsletter-form input {
     width: 100%;
     border: 1px solid rgba(255, 255, 255, 0.12);
     background: rgba(255, 255, 255, 0.055);
     color: #f5f5f5;
-    border-radius: 16px;
-    padding: 15px 16px;
+    border-radius: 999px;
+    padding: 15px 18px;
     font: inherit;
     outline: none;
   }
 
-  .contact-form input::placeholder {
+  .newsletter-form input::placeholder {
     color: #777;
   }
 
-  .contact-form input:focus {
+  .newsletter-form input:focus {
     border-color: rgba(0, 213, 213, 0.55);
     box-shadow: 0 0 0 4px rgba(0, 213, 213, 0.08);
   }
 
-  .form-button {
-    width: 100%;
-    margin-top: 20px;
+  .newsletter-form .primary {
+    white-space: nowrap;
+  }
+
+  .newsletter-msg {
+    grid-column: 1 / -1;
+    margin: 4px 0 0;
+    font-size: 0.92rem;
+    min-height: 1.2em;
+  }
+
+  .newsletter-msg.ok {
+    color: #00d5d5;
+  }
+
+  .newsletter-msg.error {
+    color: #ff6b6b;
   }
 
   .form-privacy {
-    margin: 18px 0 0;
+    grid-column: 1 / -1;
+    margin: 6px 0 0;
     color: #8d8d8d;
     font-size: 0.82rem;
     line-height: 1.6;
@@ -1486,14 +1496,14 @@
 
   @media (max-width: 1000px) {
     .grid,
-    .problem-grid,
-    .insight-grid {
+    .problem-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .compare-grid,
     .location-card,
-    .why-card,
-    .contact-card {
+    .contact-card,
+    .newsletter-card {
       grid-template-columns: 1fr;
     }
 
@@ -1547,15 +1557,14 @@
 
     .grid,
     .problem-grid,
-    .insight-grid,
-    .form-grid {
+    .compare-grid {
       grid-template-columns: 1fr;
     }
 
     .card,
     .problem-card,
-    .insight-card,
-    .faq-item {
+    .faq-item,
+    .compare-col {
       padding: 24px;
     }
 
@@ -1564,8 +1573,7 @@
       padding: 28px;
     }
 
-    .problem-card,
-    .insight-card {
+    .problem-card {
       min-height: auto;
     }
 
@@ -1576,25 +1584,16 @@
     }
 
     .founder-card,
-    .why-card,
-    .contact-card,
-    .location-card {
+    .contact-cta,
+    .location-card,
+    .newsletter-card {
       grid-template-columns: 1fr;
       padding: 28px;
-    }
-
-    .why-item {
-      grid-template-columns: 1fr;
-      gap: 14px;
     }
 
     .founder-image,
     .founder-image img {
       min-height: 380px;
-    }
-
-    .location-card {
-      padding: 28px;
     }
 
     .map-card {
@@ -1610,8 +1609,8 @@
       border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .contact-form {
-      padding: 22px;
+    .newsletter-form {
+      grid-template-columns: 1fr;
     }
 
     .process-list,
