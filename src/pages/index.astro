@@ -46,6 +46,11 @@ const WHATSAPP = "https://wa.me/4917641880516";
   </head>
 
   <body>
+    <div id="confirm-banner" class="confirm-banner" role="status" aria-live="polite">
+      <span>✓ Deine Newsletter-Anmeldung wurde bestätigt. Willkommen bei ScheinDigital!</span>
+      <button type="button" id="confirm-banner-close" aria-label="Schließen">&times;</button>
+    </div>
+
     <header class="site-header">
       <a class="brand" href="/" aria-label="ScheinDigital Startseite">
         <img class="brand-logo-img" src="/sd-logo.svg" alt="" />
@@ -543,6 +548,26 @@ const WHATSAPP = "https://wa.me/4917641880516";
 
     <script is:inline>
       // ============================================================
+      //  Bestätigungs-Banner nach Double-Opt-In
+      //  Wird angezeigt, wenn die URL ?newsletter=bestaetigt enthält
+      //  (kommt von der Brevo-DOI-Weiterleitung)
+      // ============================================================
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const banner = document.querySelector("#confirm-banner");
+        if (params.get("newsletter") === "bestaetigt" && banner) {
+          banner.classList.add("visible");
+          // URL-Parameter sauber entfernen, damit das Banner bei Reload weg ist
+          history.replaceState(null, "", window.location.pathname);
+          // nach 8 Sekunden automatisch ausblenden
+          setTimeout(() => banner.classList.remove("visible"), 8000);
+        }
+        document.querySelector("#confirm-banner-close")?.addEventListener("click", () => {
+          banner?.classList.remove("visible");
+        });
+      })();
+
+      // ============================================================
       //  Newsletter-Anmeldung -> n8n Webhook
       //  Trage unten deine n8n-Webhook-URL ein.
       //  (In n8n: Webhook-Node -> Methode POST -> Pfad z.B. /newsletter)
@@ -633,6 +658,53 @@ const WHATSAPP = "https://wa.me/4917641880516";
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  .confirm-banner {
+    position: fixed;
+    top: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: min(640px, calc(100% - 40px));
+    padding: 16px 20px;
+    border-radius: 16px;
+    background: rgba(0, 213, 213, 0.14);
+    border: 1px solid rgba(0, 213, 213, 0.45);
+    backdrop-filter: blur(18px);
+    color: #f5f5f5;
+    font-weight: 700;
+    font-size: 0.98rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    transition: top 0.4s ease, opacity 0.4s ease;
+  }
+
+  .confirm-banner.visible {
+    top: 18px;
+    opacity: 1;
+  }
+
+  .confirm-banner span {
+    flex: 1;
+  }
+
+  .confirm-banner button {
+    background: transparent;
+    border: 0;
+    color: #f5f5f5;
+    font-size: 1.6rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    opacity: 0.7;
+  }
+
+  .confirm-banner button:hover {
+    opacity: 1;
   }
 
   .site-header {
