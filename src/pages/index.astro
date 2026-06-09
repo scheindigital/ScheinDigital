@@ -466,10 +466,20 @@ const WHATSAPP = "https://wa.me/4917641880516";
             <label class="sr-only" for="nl-email">E-Mail-Adresse</label>
             <input id="nl-email" type="email" name="email" placeholder="deine@email.de" required />
             <button class="primary" type="submit">Eintragen</button>
+
+            <label class="newsletter-consent">
+              <input type="checkbox" id="nl-consent" name="consent" required />
+              <span>
+                Ja, ich möchte den Newsletter von ScheinDigital erhalten und habe die
+                <a href="/rechtliches#datenschutz">Datenschutzerklärung</a> gelesen. Die Einwilligung
+                kann ich jederzeit über den Abmeldelink widerrufen.
+              </span>
+            </label>
+
             <p class="newsletter-msg" id="newsletter-msg" role="status" aria-live="polite"></p>
             <p class="form-privacy">
-              Kein Spam. Abmeldung jederzeit möglich. Mehr Infos in der
-              <a href="/rechtliches#datenschutz">Datenschutzerklärung</a>.
+              Du erhältst eine E-Mail zur Bestätigung deiner Anmeldung (Double-Opt-In). Kein Spam,
+              Abmeldung jederzeit möglich.
             </p>
           </form>
         </div>
@@ -545,7 +555,14 @@ const WHATSAPP = "https://wa.me/4917641880516";
       nlForm?.addEventListener("submit", async (event) => {
         event.preventDefault();
         const email = new FormData(nlForm).get("email")?.toString().trim() || "";
+        const consent = document.querySelector("#nl-consent")?.checked;
         if (!email) return;
+
+        if (!consent) {
+          nlMsg.textContent = "Bitte bestätige die Einwilligung, um fortzufahren.";
+          nlMsg.className = "newsletter-msg error";
+          return;
+        }
 
         nlMsg.textContent = "Wird gesendet …";
         nlMsg.className = "newsletter-msg";
@@ -554,13 +571,19 @@ const WHATSAPP = "https://wa.me/4917641880516";
           const res = await fetch(NEWSLETTER_WEBHOOK, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, source: "website-newsletter" }),
+            body: JSON.stringify({
+              email,
+              consent: true,
+              consentText: "Newsletter-Einwilligung inkl. Datenschutzerklärung",
+              source: "website-newsletter",
+              timestamp: new Date().toISOString(),
+            }),
           });
 
           if (!res.ok) throw new Error("Request failed");
 
           nlForm.reset();
-          nlMsg.textContent = "Geschafft! Schau gleich in dein Postfach.";
+          nlMsg.textContent = "Fast geschafft! Bitte bestätige den Link in deiner E-Mail.";
           nlMsg.className = "newsletter-msg ok";
         } catch (err) {
           nlMsg.textContent = "Da ist etwas schiefgelaufen. Bitte später erneut versuchen.";
@@ -1367,6 +1390,34 @@ const WHATSAPP = "https://wa.me/4917641880516";
 
   .newsletter-form .primary {
     white-space: nowrap;
+  }
+
+  .newsletter-consent {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 4px;
+    cursor: pointer;
+  }
+
+  .newsletter-consent input {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    accent-color: #00d5d5;
+    cursor: pointer;
+  }
+
+  .newsletter-consent span {
+    color: #bdbdbd;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .newsletter-consent a {
+    color: #00d5d5;
   }
 
   .newsletter-msg {
