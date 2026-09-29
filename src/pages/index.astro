@@ -1,11 +1,68 @@
 ---
 // =====================================================================
 //  ScheinDigital – Startseite
-//  EINSTELLUNGEN: Trage hier deinen Cal.com-Link ein. Er wird überall
-//  automatisch verwendet (Header, Hero, Kontakt-Sektion).
+//  EINSTELLUNGEN: Links, Leistungen und FAQ werden hier zentral gepflegt.
+//  Leistungen und FAQ erscheinen automatisch auf der Seite UND im
+//  Schema-Markup, dadurch bleiben beide immer identisch.
 // =====================================================================
-const CAL_LINK = "https://cal.com/leon-schein/erstgespraech"; // <-- HIER deinen echten Cal.com-Link eintragen
+const CAL_LINK = "https://cal.com/leon-schein/erstgespraech";
 const WHATSAPP = "https://wa.me/4917641880516";
+
+const SERVICES = [
+  {
+    problem: "„Mich findet online keiner.“",
+    name: "Bei Google gefunden werden",
+    text: "Ich sorge dafür, dass Ihr Unternehmen bei Google und Google Maps auftaucht, wenn Kunden in Ihrer Region suchen.",
+  },
+  {
+    problem: "„Meine Website bringt keine Anfragen.“",
+    name: "Websites & Landingpages",
+    text: "Ich baue Websites, die klar zeigen, was Sie anbieten, und Besucher zur Anfrage führen.",
+  },
+  {
+    problem: "„Ich brauche schnell mehr Anfragen.“",
+    name: "Google Ads & Werbeanzeigen",
+    text: "Mit gezielten Anzeigen bei Google und in sozialen Netzwerken erreichen Sie schnell die Menschen, die zu Ihrem Angebot passen.",
+  },
+  {
+    problem: "„Social Media kostet Zeit und bringt nichts.“",
+    name: "Social Media Marketing",
+    text: "Ich entwickle mit Ihnen einen Plan, der zu Ihrem Betrieb passt und Ihnen Zeit spart.",
+  },
+  {
+    problem: "„Mein Auftritt wirkt nicht professionell.“",
+    name: "Logo- & Werbedesign",
+    text: "Logo, Flyer und Werbemittel, die auf den ersten Blick Vertrauen schaffen.",
+  },
+  {
+    problem: "„Ich weiß nicht, wo ich anfangen soll.“",
+    name: "Marketingberatung",
+    text: "Im Erstgespräch sage ich Ihnen ehrlich, was sich für Sie lohnt und was nicht.",
+  },
+];
+
+const FAQ = [
+  {
+    q: "Was passiert im kostenlosen Erstgespräch?",
+    a: "Ich schaue mir mit Ihnen Ihre Website, Ihr Google-Profil und Ihren Anfrageweg an. Danach wissen Sie, wo Sie aktuell Kunden verlieren und was sich lohnt. Das Gespräch dauert rund 15 Minuten und ist unverbindlich.",
+  },
+  {
+    q: "Muss ich danach direkt Kunde werden?",
+    a: "Nein. Wenn eine Zusammenarbeit Sinn macht, sprechen wir offen darüber. Wenn nicht, haben Sie trotzdem eine ehrliche Einschätzung.",
+  },
+  {
+    q: "Warum stehen keine festen Preise auf der Website?",
+    a: "Weil jedes Unternehmen eine andere Ausgangslage hat. Nach dem Erstgespräch bekommen Sie ein klares Angebot, das zu Ihrem Bedarf passt.",
+  },
+  {
+    q: "Für welche Unternehmen ist ScheinDigital geeignet?",
+    a: "Für Handwerksbetriebe, Praxen, Restaurants, Autohäuser, Dienstleister und IT-Firmen, in Schortens, in der Region und deutschlandweit.",
+  },
+  {
+    q: "Wie schnell sieht man Ergebnisse?",
+    a: "Das hängt vom Bereich ab. Eine bessere Website wirkt sofort, Anzeigen bringen schnell Reichweite, die Sichtbarkeit bei Google braucht mehr Zeit.",
+  },
+];
 ---
 
 <html lang="de">
@@ -13,10 +70,10 @@ const WHATSAPP = "https://wa.me/4917641880516";
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>Marketingbüro & Marketingagentur Schortens | ScheinDigital</title>
+    <title>Marketingagentur aus Schortens | ScheinDigital</title>
     <meta
       name="description"
-      content="Marketingbüro & Marketingagentur in Schortens: Local SEO, Websites, Google Ads & Design für mehr Sichtbarkeit und Kundenanfragen. Kostenloses Erstgespräch."
+      content="Marketingbüro & Marketingagentur in Schortens: Websites, Google-Sichtbarkeit, Ads, Social Media & Design für mehr Anfragen. Kostenloses Erstgespräch."
     />
 
     <link rel="canonical" href="https://scheindigital.de/" />
@@ -29,7 +86,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
     <meta property="og:title" content="Marketingbüro & Marketingagentur Schortens | ScheinDigital" />
     <meta
       property="og:description"
-      content="Mehr Sichtbarkeit. Mehr Anfragen. Mehr Kunden. Marketing, Local SEO, Websites, Ads und Design für Unternehmen."
+      content="Mehr Sichtbarkeit. Mehr Anfragen. Mehr Kunden. Websites, Sichtbarkeit bei Google, Ads, Social Media und Design für Unternehmen."
     />
     <meta property="og:url" content="https://scheindigital.de/" />
     <meta property="og:image" content="https://scheindigital.de/scheindigital-og.png" />
@@ -40,7 +97,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
     <meta name="twitter:title" content="Marketingbüro & Marketingagentur Schortens | ScheinDigital" />
     <meta
       name="twitter:description"
-      content="Mehr Sichtbarkeit. Mehr Anfragen. Mehr Kunden. Marketing, Local SEO, Websites, Ads und Design für Unternehmen."
+      content="Mehr Sichtbarkeit. Mehr Anfragen. Mehr Kunden. Websites, Sichtbarkeit bei Google, Ads, Social Media und Design für Unternehmen."
     />
     <meta name="twitter:image" content="https://scheindigital.de/scheindigital-og.png" />
 
@@ -49,7 +106,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
       "@type": "ProfessionalService",
       "@id": "https://scheindigital.de/#business",
       "name": "ScheinDigital",
-      "description": "Marketingbüro & Marketingagentur in Schortens für Local SEO, Websites, Google Ads und Design.",
+      "description": "Marketingbüro & Marketingagentur in Schortens für Websites, Sichtbarkeit bei Google, Google Ads, Social Media Marketing und Design.",
       "url": "https://scheindigital.de/",
       "email": "leon@scheindigital.de",
       "telephone": "+4917641880516",
@@ -65,8 +122,8 @@ const WHATSAPP = "https://wa.me/4917641880516";
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 53.5347,
-        "longitude": 7.9489
+        "latitude": 53.535343,
+        "longitude": 7.958019
       },
       "areaServed": [
         { "@type": "City", "name": "Schortens" },
@@ -76,7 +133,15 @@ const WHATSAPP = "https://wa.me/4917641880516";
         { "@type": "City", "name": "Wilhelmshaven" },
         { "@type": "AdministrativeArea", "name": "Friesland" }
       ],
-      "knowsAbout": ["Local SEO", "Suchmaschinenoptimierung", "Webdesign", "Google Ads", "Online Marketing", "Werbedesign"],
+      "knowsAbout": ["Local SEO", "Suchmaschinenoptimierung", "Webdesign", "Google Ads", "Social Media Marketing", "Online Marketing", "Werbedesign", "Logodesign", "Marketingberatung"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Leistungen",
+        "itemListElement": SERVICES.map((s) => ({
+          "@type": "Offer",
+          "itemOffered": { "@type": "Service", "name": s.name, "description": s.text }
+        }))
+      },
       "priceRange": "€€",
       "sameAs": ["https://www.instagram.com/scheindigital"]
     })} />
@@ -84,23 +149,11 @@ const WHATSAPP = "https://wa.me/4917641880516";
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Was passiert im kostenlosen Erstgespräch?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Wir schauen uns gemeinsam Ihre aktuelle Website, Ihr Google-Profil, Ihre Sichtbarkeit und Ihren Anfrageweg an. Danach bekommen Sie eine klare Einschätzung, wo aktuell Potenzial verloren geht. Das Gespräch dauert rund 15 Minuten und ist unverbindlich." }
-        },
-        {
-          "@type": "Question",
-          "name": "Für welche Unternehmen ist ScheinDigital geeignet?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Für lokale Unternehmen, Dienstleister, Handwerker, Praxen, Restaurants, Autohäuser und Unternehmen in Schortens und Umgebung, die online professioneller auftreten und mehr passende Anfragen gewinnen wollen." }
-        },
-        {
-          "@type": "Question",
-          "name": "Wie schnell sieht man Ergebnisse?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Das hängt vom Bereich ab. Website- und Strukturverbesserungen können sofort Vertrauen erhöhen. SEO braucht meist mehr Zeit. Ads können schneller Reichweite bringen, brauchen aber trotzdem eine saubere Grundlage." }
-        }
-      ]
+      "mainEntity": FAQ.map((f) => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
     })} />
   </head>
 
@@ -117,13 +170,10 @@ const WHATSAPP = "https://wa.me/4917641880516";
       </a>
 
       <nav class="nav" aria-label="Hauptnavigation">
-        <a href="#probleme">Probleme</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#ablauf">Ablauf</a>
-        <a href="#vergleich">Vergleich</a>
-        <a href="#ueber-mich">Über mich</a>
+        <a href="#ansprechpartner">Ansprechpartner</a>
         <a href="#faq">FAQ</a>
-        <a href="#newsletter">Newsletter</a>
       </nav>
 
       <a class="header-cta" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Erstgespräch buchen</a>
@@ -131,129 +181,80 @@ const WHATSAPP = "https://wa.me/4917641880516";
 
     <main>
       <section class="hero">
-        <h1 class="hero-h1">Marketingagentur aus Schortens</h1>
+        <div class="hero-grid">
+          <div class="hero-text">
+            <h1 class="hero-h1">Marketingagentur aus Schortens</h1>
 
-        <p class="hero-claim">Mehr Sichtbarkeit. Mehr Anfragen. Mehr Kunden.</p>
+            <p class="hero-claim">Mehr Sichtbarkeit. Mehr Anfragen. Mehr Kunden.</p>
 
-        <p class="subline">
-          ScheinDigital hilft Unternehmen dabei, online besser gefunden zu werden,
-          Vertrauen aufzubauen und mehr Kundenanfragen zu gewinnen. Mit klarer Strategie,
-          durch Sichtbarkeit bei Google, Websites, Ads und verkaufsstarkem Design.
-        </p>
+            <p class="subline">
+              Ich finde heraus, wo Ihnen online Kunden verloren gehen, und setze die passende Lösung um.
+            </p>
 
-        <div class="buttons">
-          <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
-          <a class="secondary" href="#leistungen">Leistungen ansehen</a>
-        </div>
+            <div class="buttons">
+              <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
+            </div>
 
-        <p class="hero-note">Kostenlos &amp; unverbindlich · 15 Minuten · Erst verstehen, dann entscheiden.</p>
-      </section>
+            <p class="hero-note">Kostenlos und unverbindlich. 15 Minuten.</p>
+          </div>
 
-      <section id="probleme" class="section problems">
-        <p class="eyebrow">Das Problem</p>
-        <h2>Viele Unternehmen verlieren Kunden, bevor sie überhaupt eine Anfrage bekommen.</h2>
-
-        <p class="section-intro">
-          Oft liegt es nicht am Angebot. Es liegt daran, dass potenzielle Kunden das Unternehmen
-          nicht finden, nicht verstehen oder nicht genug Vertrauen aufbauen.
-        </p>
-
-        <div class="problem-grid">
-          <article class="problem-card">
-            <span>01</span>
-            <h3>Zu wenig Sichtbarkeit</h3>
-            <p>Ihre Kunden suchen online nach Ihrer Leistung und finden zuerst Ihre Konkurrenz.</p>
-          </article>
-
-          <article class="problem-card">
-            <span>02</span>
-            <h3>Die Website überzeugt nicht</h3>
-            <p>Eine unklare Website kostet Vertrauen, bevor überhaupt Kontakt aufgenommen wird.</p>
-          </article>
-
-          <article class="problem-card">
-            <span>03</span>
-            <h3>Kein klarer Anfrageweg</h3>
-            <p>Wenn der nächste Schritt nicht einfach ist, verlieren Unternehmen unnötig Anfragen.</p>
-          </article>
-
-          <article class="problem-card">
-            <span>04</span>
-            <h3>Marketing ohne Strategie</h3>
-            <p>Werbung ohne klares Fundament verbrennt Budget, statt planbar Kunden zu bringen.</p>
-          </article>
+          <div class="hero-video">
+            <button class="video-player" id="heroVideo" type="button" aria-label="Video abspielen">
+              <img
+                class="video-poster"
+                src="/starter-poster.jpg"
+                alt="Leon Schein von ScheinDigital, Marketingagentur aus Schortens"
+                width="1280"
+                height="720"
+                loading="eager"
+              />
+              <span class="video-play-btn" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
       </section>
 
       <section id="leistungen" class="section">
         <p class="eyebrow">Leistungen</p>
-        <h2>Was ich für Ihr Unternehmen mache</h2>
+        <h2>Wo hakt es bei Ihnen?</h2>
+
+        <p class="section-intro">
+          Oft liegt es nicht am Angebot, sondern daran, dass Kunden Sie online nicht finden oder nicht überzeugt werden.
+        </p>
 
         <div class="grid">
-          <article class="card">
-            <h3>Bei Google gefunden werden</h3>
-            <p>
-              Ich optimiere Ihre lokale Sichtbarkeit, damit Kunden Sie bei Google und Google Maps
-              schneller finden, Ihnen eher vertrauen und leichter Kontakt aufnehmen.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Websites &amp; Landingpages</h3>
-            <p>
-              Klare, schnelle Websites mit sauberer Struktur, starken Texten und Fokus auf Anfragen
-              statt unnötigem Design-Spielzeug.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Online Ads</h3>
-            <p>
-              Gezielte Werbekampagnen, die mehr passende Interessenten auf Ihr Angebot aufmerksam
-              machen und planbar für Anfragen sorgen.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Werbedesign &amp; Creatives</h3>
-            <p>
-              Professionelle Anzeigen, Grafiken und visuelle Inhalte, die Ihr Unternehmen stärker
-              wirken lassen und Ihre Botschaft klarer verkaufen.
-            </p>
-          </article>
+          {SERVICES.map((s) => (
+            <article class="card">
+              <p class="card-problem">{s.problem}</p>
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+            </article>
+          ))}
         </div>
       </section>
 
       <section id="ablauf" class="section process">
         <p class="eyebrow">Ablauf</p>
-        <h2>Erst verstehen. Dann gezielt verbessern.</h2>
-
-        <p class="section-intro">
-          Ich verkaufe Ihnen keine Lösung, bevor ich das Problem kenne. Zuerst prüfe ich, wo Ihr
-          Unternehmen aktuell Kunden verliert. Danach entsteht ein klarer Plan für mehr Sichtbarkeit,
-          Vertrauen und Anfragen.
-        </p>
+        <h2>So läuft die Zusammenarbeit ab.</h2>
 
         <div class="process-list">
           <article class="process-step">
             <span>01</span>
             <div>
-              <h3>Analyse</h3>
-              <p>
-                Ich prüfe Ihre aktuelle Website, Ihr Google-Profil, Ihre Sichtbarkeit und Ihren
-                Anfrageweg.
-              </p>
+              <h3>Erstgespräch</h3>
+              <p>15 Minuten, kostenlos und unverbindlich.</p>
             </div>
           </article>
 
           <article class="process-step">
             <span>02</span>
             <div>
-              <h3>Strategie</h3>
-              <p>
-                Gemeinsam entscheiden wir, welcher Hebel am meisten bringt: Sichtbarkeit bei Google,
-                Website, Ads, Design oder eine Kombination.
-              </p>
+              <h3>Ehrliche Einschätzung</h3>
+              <p>Ich zeige Ihnen, wo es hakt und was die Lösung kostet.</p>
             </div>
           </article>
 
@@ -261,84 +262,27 @@ const WHATSAPP = "https://wa.me/4917641880516";
             <span>03</span>
             <div>
               <h3>Umsetzung</h3>
-              <p>
-                Ich setze die wichtigsten Maßnahmen sauber um, damit Ihr Unternehmen online
-                professioneller und vertrauenswürdiger wirkt.
-              </p>
-            </div>
-          </article>
-
-          <article class="process-step">
-            <span>04</span>
-            <div>
-              <h3>Optimierung</h3>
-              <p>
-                Ich schärfe nach, verbessere und passe an, damit aus Sichtbarkeit echte Anfragen
-                entstehen.
-              </p>
+              <p>Ich kümmere mich um alles, Sie konzentrieren sich auf Ihr Geschäft.</p>
             </div>
           </article>
         </div>
       </section>
 
-      <section id="vergleich" class="section compare">
-        <p class="eyebrow">Der Unterschied</p>
-        <h2>Warum ScheinDigital statt einer Standard-Agentur.</h2>
-
-        <p class="section-intro">
-          Viele Agenturen verkaufen sofort ein Paket. Ich starte mit der wichtigsten Frage:
-          Wo verlieren Sie gerade wirklich Kunden? Erst danach kommt die Lösung.
-        </p>
-
-        <div class="compare-grid">
-          <article class="compare-col compare-them">
-            <h3>Standard-Agentur</h3>
-            <ul>
-              <li>Verkauft sofort ein Standardpaket</li>
-              <li>Anonymes Team, wechselnde Ansprechpartner</li>
-              <li>Lange Vertragsbindung</li>
-              <li>Fokus auf Optik statt Anfragen</li>
-              <li>Reporting ohne klaren Plan</li>
-            </ul>
-          </article>
-
-          <article class="compare-col compare-us">
-            <h3>
-              <img class="compare-logo" src="/sd-logo.svg" alt="" />
-              ScheinDigital
-            </h3>
-            <ul>
-              <li>Erst Analyse, dann passende Lösung</li>
-              <li>Ein direkter, persönlicher Ansprechpartner</li>
-              <li>Flexibel, ohne Knebelvertrag</li>
-              <li>Fokus auf echte Kundenanfragen</li>
-              <li>Klarer Plan: Sichtbarkeit → Vertrauen → Anfrage</li>
-            </ul>
-          </article>
-        </div>
-      </section>
-
-      <section id="ueber-mich" class="section founder">
+      <section id="ansprechpartner" class="section founder">
         <div class="founder-card">
           <div class="founder-copy">
-            <p class="eyebrow">Persönlicher Ansprechpartner</p>
-            <h2>Direkt. Klar. Ohne anonymes Agentur-System.</h2>
+            <p class="eyebrow">Ihr Ansprechpartner</p>
+            <h2>Ein Ansprechpartner statt anonymer Agentur.</h2>
 
             <p>
-              Hinter ScheinDigital stehe ich, Leon Schein. Mir geht es nicht darum, Ihnen
-              irgendeine Marketing-Leistung zu verkaufen, sondern zuerst zu verstehen, wo Ihr
-              Unternehmen aktuell Sichtbarkeit, Vertrauen oder Anfragen verliert.
-            </p>
-
-            <p>
-              Sie bekommen einen direkten Ansprechpartner, klare Kommunikation und eine Umsetzung,
-              die auf echte Kundengewinnung ausgerichtet ist, nicht auf hübsche Berichte.
+              Ich bin Leon Schein und kümmere mich persönlich um Ihr Projekt, vom ersten Gespräch bis zur Umsetzung.
+              Sie erreichen immer direkt mich, ohne Warteschleife und ohne wechselnde Zuständigkeiten.
             </p>
 
             <div class="founder-points">
-              <span>Klare Analyse</span>
+              <span>Erst Analyse, dann Lösung</span>
               <span>Direkter Kontakt</span>
-              <span>Fokus auf Anfragen</span>
+              <span>Ohne Knebelvertrag</span>
             </div>
           </div>
 
@@ -348,172 +292,27 @@ const WHATSAPP = "https://wa.me/4917641880516";
         </div>
       </section>
 
-      <section class="section dark">
-        <p class="eyebrow">Für wen?</p>
-        <h2>Für Unternehmen, die online ernster genommen werden wollen.</h2>
-
-        <p>
-          Egal ob Handwerker, Praxis, Restaurant, Autohaus oder lokaler Dienstleister:
-          Wenn Kunden in Ihrer Region nach Ihrer Leistung suchen, sollten Sie sichtbar sein.
-        </p>
-      </section>
-
       <section id="standort" class="section location">
         <div class="location-card">
           <div class="location-copy">
             <p class="eyebrow">Standort</p>
-            <h2>Lokal aus Schortens. Digital für Ihr Unternehmen.</h2>
-
+            <h2>Ihr Marketingbüro in Schortens.</h2>
             <p>
-              ScheinDigital ist Ihr Marketingbüro in Schortens, Friesland. Als lokale
-              Marketingagentur verstehe ich besonders gut, wie Unternehmen in Schortens und der
-              Region sichtbar werden müssen, von Jever über Sande bis Wilhelmshaven.
+              Als Marketingagentur aus Schortens kenne ich die Region von Jever über Sande bis Wilhelmshaven.
+              Die Zusammenarbeit läuft flexibel digital, auch mit Unternehmen in ganz Deutschland.
             </p>
-
-            <p>
-              Die Zusammenarbeit läuft flexibel digital, aber mit persönlichem Ansprechpartner,
-              klarer Kommunikation und echtem Verständnis für lokale Kundengewinnung.
-            </p>
-
-            <div class="location-actions">
-              <a
-                class="primary"
-                href="https://www.google.com/maps/search/?api=1&query=ScheinDigital%20Schortens"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Standort ansehen
-              </a>
-              <a class="secondary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Erstgespräch buchen</a>
-            </div>
           </div>
 
-          <div class="map-card" aria-label="Standort ScheinDigital in Schortens">
-            <div class="map-topbar">
-              <span></span>
-              <span></span>
-              <span></span>
+          <div class="nap">
+            <div>
+              <span>Adresse</span>
+              <strong>Karl-Carstens-Str. 16<br />26419 Schortens</strong>
             </div>
-
-            <div class="map-visual">
-              <div class="map-line horizontal one"></div>
-              <div class="map-line horizontal two"></div>
-              <div class="map-line horizontal three"></div>
-              <div class="map-line vertical one"></div>
-              <div class="map-line vertical two"></div>
-              <div class="map-line diagonal"></div>
-
-              <div class="map-pin">
-                <div class="pin-dot"></div>
-              </div>
-
-              <div class="map-label">
-                <span>ScheinDigital</span>
-                <strong>Schortens, Friesland</strong>
-              </div>
-            </div>
-
-            <div class="map-info">
-              <div>
-                <span>Adresse</span>
-                <strong>Karl-Carstens-Str. 16, 26419 Schortens</strong>
-              </div>
-              <div>
-                <span>Telefon</span>
-                <strong><a href="tel:+4917641880516">+49 176 41880516</a></strong>
-              </div>
+            <div>
+              <span>Telefon</span>
+              <strong><a href="tel:+4917641880516">+49 176 41880516</a></strong>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section id="faq" class="section faq">
-        <p class="eyebrow">FAQ</p>
-        <h2>Häufige Fragen vor der Zusammenarbeit.</h2>
-
-        <div class="faq-list">
-          <details class="faq-item" open>
-            <summary>Was passiert im kostenlosen Erstgespräch?</summary>
-            <p>
-              Wir schauen uns gemeinsam Ihre aktuelle Website, Ihr Google-Profil, Ihre Sichtbarkeit
-              und Ihren Anfrageweg an. Danach bekommen Sie eine klare Einschätzung, wo aktuell
-              Potenzial verloren geht. Das Gespräch dauert rund 15 Minuten und ist unverbindlich.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Muss ich danach direkt Kunde werden?</summary>
-            <p>
-              Nein. Das Gespräch ist erstmal dafür da, Ihre Situation besser zu verstehen und sinnvolle
-              nächste Schritte zu erkennen. Wenn eine Zusammenarbeit Sinn macht, sprechen wir offen darüber.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Warum stehen keine festen Preise auf der Website?</summary>
-            <p>
-              Weil jedes Unternehmen eine andere Ausgangslage hat. Manche brauchen zuerst eine bessere
-              Website, andere mehr lokale Sichtbarkeit, Ads oder bessere Creatives. Erst das Gespräch zeigt,
-              welche Lösung wirklich sinnvoll ist.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Bieten Sie nur lokale Suchmaschinen-Optimierung an?</summary>
-            <p>
-              Nein. Die lokale Sichtbarkeit bei Google ist ein wichtiger Bereich, aber ich betrachte
-              das gesamte Problem: Sichtbarkeit, Website, Vertrauen, Anfrageweg, Werbeanzeigen und Design.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Für welche Unternehmen ist ScheinDigital geeignet?</summary>
-            <p>
-              Für lokale Unternehmen, Dienstleister, Handwerker, Praxen, Restaurants, Autohäuser und
-              Unternehmen, die online professioneller auftreten und mehr passende Anfragen gewinnen wollen.
-            </p>
-          </details>
-
-          <details class="faq-item">
-            <summary>Wie schnell sieht man Ergebnisse?</summary>
-            <p>
-              Das hängt vom Bereich ab. Website- und Strukturverbesserungen können sofort Vertrauen erhöhen.
-              SEO braucht meist mehr Zeit. Ads können schneller Reichweite bringen, brauchen aber trotzdem
-              eine saubere Grundlage.
-            </p>
-          </details>
-        </div>
-      </section>
-
-      <section id="kontakt" class="section contact-section">
-        <div class="contact-cta">
-          <p class="eyebrow">Nächster Schritt</p>
-          <h2>Finden Sie heraus, wo Ihr Unternehmen online Kunden verliert.</h2>
-
-          <p class="contact-lead">
-            Buchen Sie ein kostenloses 15-Minuten-Erstgespräch. Wir schauen uns Ihre Website,
-            Ihre lokale Sichtbarkeit und Ihren Anfrageweg an, und Sie bekommen eine klare
-            Einschätzung, wo das größte Potenzial liegt.
-          </p>
-
-          <div class="cta-points">
-            <span>Website prüfen</span>
-            <span>Google-Sichtbarkeit prüfen</span>
-            <span>Anfrage-Struktur prüfen</span>
-          </div>
-
-          <div class="contact-actions">
-            <a class="primary contact-primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">
-              Kostenloses Erstgespräch buchen
-            </a>
-            <a class="secondary" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
-              Lieber per WhatsApp
-            </a>
-          </div>
-
-          <p class="contact-note">
-            Kostenlos &amp; unverbindlich. Keine Budgetfrage. Erst verstehen, dann sinnvoll entscheiden.
-          </p>
         </div>
       </section>
 
@@ -523,9 +322,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
             <p class="eyebrow">Newsletter</p>
             <h2>Noch nicht bereit für ein Gespräch?</h2>
             <p>
-              Kein Problem. Tragen Sie sich in den Newsletter ein und bekommen Sie regelmäßig einen
-              konkreten Tipp für mehr lokale Sichtbarkeit und mehr Anfragen, direkt umsetzbar, ohne
-              Marketing-Bla.
+              Dann erhalten Sie regelmäßig einen konkreten Tipp für mehr Sichtbarkeit und mehr Anfragen, direkt umsetzbar.
             </p>
           </div>
 
@@ -537,8 +334,8 @@ const WHATSAPP = "https://wa.me/4917641880516";
             <label class="newsletter-consent">
               <input type="checkbox" id="nl-consent" name="consent" required />
               <span>
-                Ja, ich möchte den Newsletter von ScheinDigital erhalten und habe die
-                <a href="/rechtliches#datenschutz">Datenschutzerklärung</a> gelesen. Die Einwilligung
+                Ja, ich möchte den Newsletter von ScheinDigital erhalten und habe die <a href="/rechtliches#datenschutz">Datenschutzerklärung</a>
+                gelesen. Die Einwilligung
                 kann ich jederzeit über den Abmeldelink widerrufen.
               </span>
             </label>
@@ -552,49 +349,61 @@ const WHATSAPP = "https://wa.me/4917641880516";
         </div>
       </section>
 
+      <section id="faq" class="section faq">
+        <p class="eyebrow">FAQ</p>
+        <h2>Häufige Fragen.</h2>
+
+        <div class="faq-list">
+          {FAQ.map((f, i) => (
+            <details class="faq-item" open={i === 0}>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section id="kontakt" class="section contact-section">
+        <div class="contact-cta">
+          <p class="eyebrow">Nächster Schritt</p>
+          <h2>Wo verlieren Sie online Kunden?</h2>
+
+          <p class="contact-lead">
+            In 15 Minuten schaue ich mir Ihren Online-Auftritt an und sage Ihnen, wo es hakt.
+          </p>
+
+          <div class="cta-points">
+            <span>Website-Check</span>
+            <span>Google-Check</span>
+            <span>Klare Empfehlung</span>
+          </div>
+
+          <div class="contact-actions">
+            <a class="primary contact-primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">
+              Kostenloses Erstgespräch buchen
+            </a>
+            <a class="secondary" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+              Lieber per WhatsApp
+            </a>
+          </div>
+
+          <p class="contact-note">Kostenlos und unverbindlich.</p>
+        </div>
+      </section>
+
       <footer class="footer">
         <div class="footer-brand">
           <a class="brand footer-logo" href="/" aria-label="ScheinDigital Startseite">
             <img class="brand-logo-img" src="/sd-logo.svg" alt="" />
             <span>ScheinDigital</span>
           </a>
-
           <p>Marketingagentur aus Schortens.</p>
-
-          <div class="social-links">
-            <a href="https://www.instagram.com/scheindigital" target="_blank" rel="noopener noreferrer" aria-label="ScheinDigital auf Instagram">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
-                <circle cx="12" cy="12" r="4"></circle>
-                <circle cx="17.5" cy="6.5" r="1"></circle>
-              </svg>
-            </a>
-
-            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" aria-label="ScheinDigital per WhatsApp kontaktieren">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20.5 11.8a8.4 8.4 0 0 1-12.4 7.4L4 20.5l1.3-4a8.4 8.4 0 1 1 15.2-4.7Z"></path>
-                <path d="M9.2 8.6c.2-.4.4-.5.7-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5-.1.7l-.4.5c-.1.2-.1.4.1.6.5.8 1.2 1.5 2.1 2 .2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.7-.1l1.8.8c.3.1.4.3.4.6v.4c0 .4-.2.7-.5.9-.5.3-1.2.5-2 .4-2.9-.4-5.8-3.1-6.4-6-.2-.8 0-1.5.1-1.8Z"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <div class="footer-column">
-          <h3>Navigation</h3>
-          <a href="#leistungen">Leistungen</a>
-          <a href="#ablauf">Ablauf</a>
-          <a href="#vergleich">Vergleich</a>
-          <a href="#ueber-mich">Über mich</a>
-          <a href="#faq">FAQ</a>
-          <a href="#newsletter">Newsletter</a>
         </div>
 
         <div class="footer-column">
           <h3>Kontakt</h3>
-          <a href={CAL_LINK} target="_blank" rel="noopener noreferrer">Erstgespräch buchen</a>
           <a href="mailto:leon@scheindigital.de">leon@scheindigital.de</a>
           <a href="tel:+4917641880516">+49 176 41880516</a>
-          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <address style="font-style: normal; color: #bdbdbd; font-size: 0.95rem; line-height: 1.6; margin-top: 4px;">
             ScheinDigital<br />
             Karl-Carstens-Str. 16<br />
@@ -615,6 +424,26 @@ const WHATSAPP = "https://wa.me/4917641880516";
     </main>
 
     <script is:inline>
+      // ============================================================
+      //  Hero-Video: Klick-to-Play (lädt erst beim Klick → schnelle Ladezeit)
+      // ============================================================
+      (function () {
+        const trigger = document.querySelector("#heroVideo");
+        if (!trigger) return;
+        trigger.addEventListener("click", () => {
+          const video = document.createElement("video");
+          video.src = "/starter.mp4";
+          video.controls = true;
+          video.autoplay = true;
+          video.playsInline = true;
+          video.setAttribute("playsinline", "");
+          trigger.innerHTML = "";
+          trigger.appendChild(video);
+          trigger.style.cursor = "default";
+          video.play().catch(() => {});
+        });
+      })();
+
       // ============================================================
       //  Bestätigungs-Banner nach Double-Opt-In
       //  Wird angezeigt, wenn die URL ?newsletter=bestaetigt enthält
@@ -652,7 +481,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
         if (!email) return;
 
         if (!consent) {
-          nlMsg.textContent = "Bitte bestätige die Einwilligung, um fortzufahren.";
+          nlMsg.textContent = "Bitte bestätigen Sie die Einwilligung, um fortzufahren.";
           nlMsg.className = "newsletter-msg error";
           return;
         }
@@ -679,7 +508,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
           nlMsg.textContent = "Fast geschafft! Bitte bestätigen Sie den Link in Ihrer E-Mail.";
           nlMsg.className = "newsletter-msg ok";
         } catch (err) {
-          nlMsg.textContent = "Da ist etwas schiefgelaufen. Bitte später erneut versuchen.";
+          nlMsg.textContent = "Da ist etwas schiefgelaufen. Bitte versuchen Sie es später erneut.";
           nlMsg.className = "newsletter-msg error";
         }
       });
@@ -863,6 +692,17 @@ const WHATSAPP = "https://wa.me/4917641880516";
     margin-bottom: 18px;
   }
 
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .hero-text {
+    min-width: 0;
+  }
+
   .hero-h1 {
     max-width: 760px;
     font-size: clamp(0.95rem, 1.6vw, 1.15rem);
@@ -875,12 +715,73 @@ const WHATSAPP = "https://wa.me/4917641880516";
 
   .hero-claim {
     max-width: 900px;
-    font-size: clamp(3rem, 8vw, 6.8rem);
+    font-size: clamp(2.6rem, 5.5vw, 5.2rem);
     font-weight: 800;
     line-height: 0.92;
     letter-spacing: -0.07em;
     color: #ffffff;
     margin: 0;
+  }
+
+  .hero-video {
+    width: 100%;
+  }
+
+  .video-player {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #111;
+  }
+
+  .video-poster {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease, filter 0.3s ease;
+  }
+
+  .video-player:hover .video-poster {
+    transform: scale(1.03);
+    filter: brightness(0.85);
+  }
+
+  .video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #00d5d5;
+    color: #0a0a0a;
+    box-shadow: 0 8px 30px rgba(0, 213, 213, 0.4);
+    transition: transform 0.25s ease, background 0.25s ease;
+    padding-left: 4px;
+  }
+
+  .video-player:hover .video-play-btn {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+
+  .video-player iframe,
+  .video-player video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
   h2 {
@@ -970,19 +871,13 @@ const WHATSAPP = "https://wa.me/4917641880516";
     scroll-margin-top: 120px;
   }
 
-  .problems {
-    padding-top: 100px;
-  }
-
-  .problem-grid,
   .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 18px;
     margin-top: 34px;
   }
 
-  .problem-card,
   .card {
     background: rgba(255, 255, 255, 0.045);
     border: 1px solid rgba(255, 255, 255, 0.09);
@@ -990,22 +885,22 @@ const WHATSAPP = "https://wa.me/4917641880516";
     padding: 28px;
   }
 
-  .problem-card {
-    min-height: 250px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+  .card-problem {
+    margin: 0 0 18px;
+    color: #f5f5f5;
+    font-size: 1.15rem;
+    font-weight: 750;
+    line-height: 1.4;
   }
 
-  .problem-card span {
-    display: inline-flex;
-    margin-bottom: 28px;
+  .card h3 {
     color: #00d5d5;
-    font-weight: 900;
-    font-size: 0.9rem;
-    letter-spacing: 0.08em;
+    font-size: 1rem;
+    margin: 0 0 8px;
   }
 
-  .problem-card p {
-    margin-bottom: 0;
+  .card p:last-child {
+    margin: 0;
   }
 
   .process-list {
@@ -1033,83 +928,6 @@ const WHATSAPP = "https://wa.me/4917641880516";
 
   .process-step p {
     margin-bottom: 0;
-  }
-
-  /* ---- Vergleich ---- */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    margin-top: 36px;
-  }
-
-  .compare-col {
-    border-radius: 28px;
-    padding: 36px;
-    border: 1px solid rgba(255, 255, 255, 0.09);
-  }
-
-  .compare-them {
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .compare-us {
-    background:
-      radial-gradient(circle at top right, rgba(0, 213, 213, 0.16), transparent 42%),
-      rgba(255, 255, 255, 0.045);
-    border-color: rgba(0, 213, 213, 0.3);
-  }
-
-  .compare-col h3 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.3rem;
-    margin-bottom: 24px;
-  }
-
-  .compare-logo {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-  }
-
-  .compare-col ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 14px;
-  }
-
-  .compare-col li {
-    position: relative;
-    padding-left: 32px;
-    color: #cfcfcf;
-    font-size: 1.02rem;
-    line-height: 1.5;
-  }
-
-  .compare-them li::before {
-    content: "✕";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #ff6b6b;
-    font-weight: 900;
-  }
-
-  .compare-us li {
-    color: #f0f0f0;
-  }
-
-  .compare-us li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: #00d5d5;
-    font-weight: 900;
   }
 
   .founder-card {
@@ -1152,7 +970,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
   .founder-image {
     border-radius: 30px;
     overflow: hidden;
-    min-height: 520px;
+    min-height: 440px;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -1160,237 +978,45 @@ const WHATSAPP = "https://wa.me/4917641880516";
   .founder-image img {
     width: 100%;
     height: 100%;
-    min-height: 520px;
+    min-height: 440px;
     display: block;
     object-fit: cover;
     object-position: center top;
   }
 
-  .dark {
-    background: rgba(255, 255, 255, 0.035);
-    border-radius: 34px;
-    padding: 54px;
-    margin: 70px 0;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .location {
-    padding-top: 40px;
-  }
-
   .location-card {
     display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 28px;
-    align-items: stretch;
-    background:
-      radial-gradient(circle at top right, rgba(0, 213, 213, 0.14), transparent 36%),
-      rgba(255, 255, 255, 0.035);
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.035);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 34px;
     padding: 54px;
   }
 
-  .location-copy {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .location-copy p {
+    margin: 0;
+    max-width: 640px;
   }
 
-  .location-copy h2 {
-    margin-bottom: 24px;
-  }
-
-  .location-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-top: 26px;
-  }
-
-  .map-card {
-    min-height: 420px;
-    border-radius: 30px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.36);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .nap {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    gap: 20px;
   }
 
-  .map-topbar {
-    display: flex;
-    gap: 8px;
-    padding: 18px 20px;
-    background: rgba(255, 255, 255, 0.045);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .map-topbar span {
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.28);
-  }
-
-  .map-visual {
-    position: relative;
-    min-height: 280px;
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 55% 45%, rgba(0, 213, 213, 0.18), transparent 28%),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
-  }
-
-  .map-visual::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 42px 42px;
-    opacity: 0.8;
-  }
-
-  .map-line {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-  }
-
-  .map-line.horizontal {
-    height: 7px;
-    width: 120%;
-    left: -10%;
-  }
-
-  .map-line.horizontal.one {
-    top: 26%;
-    transform: rotate(-5deg);
-  }
-
-  .map-line.horizontal.two {
-    top: 56%;
-    transform: rotate(4deg);
-  }
-
-  .map-line.horizontal.three {
-    top: 78%;
-    transform: rotate(-3deg);
-  }
-
-  .map-line.vertical {
-    width: 7px;
-    height: 120%;
-    top: -10%;
-  }
-
-  .map-line.vertical.one {
-    left: 27%;
-    transform: rotate(6deg);
-  }
-
-  .map-line.vertical.two {
-    left: 70%;
-    transform: rotate(-7deg);
-  }
-
-  .map-line.diagonal {
-    width: 7px;
-    height: 150%;
-    top: -22%;
-    left: 49%;
-    transform: rotate(44deg);
-    background: rgba(0, 213, 213, 0.28);
-  }
-
-  .map-pin {
-    position: absolute;
-    left: 53%;
-    top: 46%;
-    transform: translate(-50%, -50%);
-    width: 62px;
-    height: 62px;
-    border-radius: 999px;
-    background: rgba(0, 213, 213, 0.16);
-    border: 1px solid rgba(0, 213, 213, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 60px rgba(0, 213, 213, 0.28);
-  }
-
-  .pin-dot {
-    width: 22px;
-    height: 22px;
-    border-radius: 999px;
-    background: #00d5d5;
-    border: 6px solid rgba(5, 5, 5, 0.85);
-  }
-
-  .map-label {
-    position: absolute;
-    left: 50%;
-    bottom: 28px;
-    transform: translateX(-50%);
-    width: min(82%, 330px);
-    padding: 18px;
-    border-radius: 20px;
-    background: rgba(8, 8, 8, 0.78);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-  }
-
-  .map-label span {
-    display: block;
-    color: #00d5d5;
-    font-size: 0.78rem;
-    font-weight: 850;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .map-label strong {
-    display: block;
-    color: #f5f5f5;
-    font-size: 1.2rem;
-    letter-spacing: -0.03em;
-  }
-
-  .map-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .map-info div {
-    padding: 20px;
-  }
-
-  .map-info div + div {
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .map-info span {
+  .nap span {
     display: block;
     color: #8d8d8d;
-    font-size: 0.78rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 7px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 4px;
   }
 
-  .map-info strong {
+  .nap strong {
     color: #f5f5f5;
-    font-size: 0.98rem;
-    line-height: 1.3;
-  }
-
-  .why-item h3 {
-    margin-bottom: 8px;
+    font-size: 1.05rem;
+    line-height: 1.4;
   }
 
   .faq-list {
@@ -1601,7 +1227,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
 
   .footer {
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    grid-template-columns: 1.4fr 1fr 1fr;
     gap: 34px;
     padding: 56px 0 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -1614,41 +1240,6 @@ const WHATSAPP = "https://wa.me/4917641880516";
   .footer-brand p {
     margin: 0 0 22px;
     font-size: 0.95rem;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 12px;
-  }
-
-  .social-links a {
-    width: 42px;
-    height: 42px;
-    border-radius: 999px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #f5f5f5;
-    font-weight: 900;
-    font-size: 0.85rem;
-  }
-
-  .social-links svg {
-    width: 20px;
-    height: 20px;
-    display: block;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .social-links a:hover {
-    background: #00d5d5;
-    color: #050505;
   }
 
   .footer-column {
@@ -1698,14 +1289,11 @@ const WHATSAPP = "https://wa.me/4917641880516";
   }
 
   @media (max-width: 1000px) {
-    .grid,
-    .problem-grid {
+    .grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .compare-grid,
     .location-card,
-    .contact-card,
     .newsletter-card {
       grid-template-columns: 1fr;
     }
@@ -1754,30 +1342,22 @@ const WHATSAPP = "https://wa.me/4917641880516";
       padding-bottom: 64px;
     }
 
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
     .section {
       padding: 64px 0;
     }
 
-    .grid,
-    .problem-grid,
-    .compare-grid {
+    .grid {
       grid-template-columns: 1fr;
     }
 
     .card,
-    .problem-card,
-    .faq-item,
-    .compare-col {
+    .faq-item {
       padding: 24px;
-    }
-
-    .dark {
-      margin: 48px 0;
-      padding: 28px;
-    }
-
-    .problem-card {
-      min-height: auto;
     }
 
     .process-step {
@@ -1799,19 +1379,6 @@ const WHATSAPP = "https://wa.me/4917641880516";
       min-height: 380px;
     }
 
-    .map-card {
-      min-height: 380px;
-    }
-
-    .map-info {
-      grid-template-columns: 1fr;
-    }
-
-    .map-info div + div {
-      border-left: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
     .newsletter-form {
       grid-template-columns: 1fr;
     }
@@ -1821,8 +1388,7 @@ const WHATSAPP = "https://wa.me/4917641880516";
       gap: 14px;
     }
 
-    .buttons,
-    .location-actions {
+    .buttons {
       margin-top: 28px;
     }
 
