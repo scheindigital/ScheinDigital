@@ -230,6 +230,13 @@ a {
   margin: 0;
 }
 
+/* Angebotskarten auf den Unterseiten: Titel weiß und größer */
+.offer-card h3 {
+  color: #f5f5f5;
+  font-size: 1.35rem;
+  margin-bottom: 10px;
+}
+
 .card-link {
   display: inline-block;
   margin-top: 14px;
@@ -243,7 +250,8 @@ a {
 }
 
 .founder-points,
-.cta-points {
+.cta-points,
+.pill-list {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -251,7 +259,8 @@ a {
 }
 
 .founder-points span,
-.cta-points span {
+.cta-points span,
+.pill-list span {
   color: #f5f5f5;
   border: 1px solid rgba(0, 213, 213, 0.28);
   background: rgba(0, 213, 213, 0.08);

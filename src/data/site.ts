@@ -24,6 +24,13 @@ export const ADDRESS = {
   country: "DE",
 };
 
+// Leistungs-Unterseiten im Header-Menü "Leistungen".
+// Neue Unterseite anlegen, dann hier eintragen.
+export const SERVICE_PAGES = [
+  { href: "/webdesign", label: "Webdesign", hint: "Websites & Landingpages" },
+  { href: "/social-media", label: "Social Media", hint: "Instagram, Facebook, TikTok & LinkedIn" },
+];
+
 export const AREA_SERVED = [
   { "@type": "City", "name": "Schortens" },
   { "@type": "City", "name": "Jever" },

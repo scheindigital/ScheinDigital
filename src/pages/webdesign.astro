@@ -5,6 +5,8 @@
 //  FAQ erscheint automatisch auf der Seite UND im Schema-Markup.
 // =====================================================================
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceHero from "../components/ServiceHero.astro";
+import ProblemSection from "../components/ProblemSection.astro";
 import ProcessSection from "../components/ProcessSection.astro";
 import FaqSection from "../components/FaqSection.astro";
 import CtaSection from "../components/CtaSection.astro";
@@ -22,7 +24,7 @@ const INCLUDED = [
   "Ein fester Ansprechpartner",
 ];
 
-const PROBLEMS: { problem: string; name: string; text: string; link?: { href: string; text: string } }[] = [
+const PROBLEMS = [
   {
     problem: "„Meine Website sieht gut aus, aber keiner fragt an.“",
     name: "Kein klarer nächster Schritt",
@@ -100,7 +102,6 @@ const SCHEMA = [
 ];
 
 const NAV = [
-  { href: "/#leistungen", label: "Alle Leistungen" },
   { href: "#angebot", label: "Angebot" },
   { href: "#ablauf", label: "Ablauf" },
   { href: "#faq", label: "FAQ" },
@@ -116,55 +117,15 @@ const NAV = [
   schema={SCHEMA}
   nav={NAV}
 >
-  <section class="hero hero-page">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <h1 class="hero-h1">Webdesign aus Schortens</h1>
+  <ServiceHero
+    h1="Webdesign aus Schortens"
+    claim="Eine Website, die Anfragen bringt."
+    subline="Ich baue Ihre Website so, dass Besucher sofort verstehen, was Sie anbieten, und direkt bei Ihnen anfragen."
+    listTitle="In jeder Website enthalten"
+    list={INCLUDED}
+  />
 
-        <p class="page-claim">Eine Website, die Anfragen bringt.</p>
-
-        <p class="subline">
-          Ich baue Ihre Website so, dass Besucher sofort verstehen, was Sie anbieten, und direkt bei Ihnen anfragen.
-        </p>
-
-        <div class="buttons">
-          <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
-        </div>
-
-        <p class="hero-note">Kostenlos und unverbindlich. 20 Minuten.</p>
-      </div>
-
-      <div class="included-card">
-        <p class="included-title">In jeder Website enthalten</p>
-        <ul class="included-list">
-          {INCLUDED.map((item) => (
-            <li>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
-                <path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="probleme" class="section">
-    <p class="eyebrow">Typische Probleme</p>
-    <h2>Woran es meistens hakt.</h2>
-
-    <div class="grid">
-      {PROBLEMS.map((p) => (
-        <article class="card">
-          <p class="card-problem">{p.problem}</p>
-          <h3>{p.name}</h3>
-          <p>{p.text}</p>
-          {p.link && <a class="card-link" href={p.link.href}>{p.link.text} →</a>}
-        </article>
-      ))}
-    </div>
-  </section>
+  <ProblemSection items={PROBLEMS} />
 
   <section id="angebot" class="section">
     <p class="eyebrow">Angebot</p>
@@ -196,77 +157,3 @@ const NAV = [
     points={["Website-Check", "Handy-Check", "Klare Empfehlung"]}
   />
 </BaseLayout>
-
-<style>
-  .hero-page {
-    min-height: auto;
-    padding: 160px 0 100px;
-  }
-
-  .page-claim {
-    max-width: 640px;
-    font-size: clamp(2.4rem, 10.5cqi, 4.4rem);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.06em;
-    color: #ffffff;
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  .included-card {
-    background:
-      radial-gradient(circle at top right, rgba(0, 213, 213, 0.16), transparent 45%),
-      rgba(255, 255, 255, 0.045);
-    border: 1px solid rgba(0, 213, 213, 0.22);
-    border-radius: 28px;
-    padding: 36px;
-  }
-
-  .included-title {
-    margin: 0 0 22px;
-    color: #f5f5f5;
-    font-size: 1.15rem;
-    font-weight: 800;
-  }
-
-  .included-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 16px;
-  }
-
-  .included-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    color: #f5f5f5;
-    font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-
-  .included-list svg {
-    flex-shrink: 0;
-    margin-top: 1px;
-    color: #00d5d5;
-  }
-
-  .offer-card h3 {
-    color: #f5f5f5;
-    font-size: 1.35rem;
-    margin-bottom: 10px;
-  }
-
-  @media (max-width: 800px) {
-    .hero-page {
-      padding: 115px 0 64px;
-    }
-
-    .included-card {
-      padding: 28px;
-    }
-  }
-</style>

@@ -1,0 +1,166 @@
+---
+// =====================================================================
+//  ScheinDigital – Unterseite Social Media Marketing
+//  Texte für Probleme, Angebot, Ablauf und FAQ werden hier gepflegt.
+//  FAQ erscheint automatisch auf der Seite UND im Schema-Markup.
+//  Bezahlte Werbung (Meta-Ads) bewusst nicht hier, sondern auf der
+//  späteren Seite für Werbeanzeigen.
+// =====================================================================
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceHero from "../components/ServiceHero.astro";
+import ProblemSection from "../components/ProblemSection.astro";
+import ProcessSection from "../components/ProcessSection.astro";
+import FaqSection from "../components/FaqSection.astro";
+import CtaSection from "../components/CtaSection.astro";
+import { AREA_SERVED, BUSINESS, CAL_LINK, SITE_URL, faqSchema } from "../data/site";
+
+const DESCRIPTION =
+  "Social Media Marketing aus Schortens: Ich plane, erstelle und betreue Ihre Beiträge auf Instagram, Facebook, TikTok und LinkedIn. Kostenloses Erstgespräch.";
+
+const PLATFORMS = ["Instagram", "Facebook", "TikTok", "LinkedIn"];
+
+const INCLUDED = [
+  "Ein Plan, der zu Ihrem Betrieb passt",
+  "Beiträge mit Grafiken und Texten",
+  "Regelmäßiges Veröffentlichen",
+  "Antworten auf Kommentare und Nachrichten",
+  "Instagram, Facebook, TikTok und LinkedIn",
+  "Ein fester Ansprechpartner",
+];
+
+const PROBLEMS = [
+  {
+    problem: "„Für Social Media fehlt mir einfach die Zeit.“",
+    name: "Keine Zeit im Alltag",
+    text: "Zwischen Kunden und Aufträgen bleibt Social Media liegen. Ein Account, der monatelang still ist, wirkt schnell verlassen.",
+  },
+  {
+    problem: "„Ich poste ab und zu, aber es passiert nichts.“",
+    name: "Kein Plan dahinter",
+    text: "Einzelne Beiträge ohne roten Faden bleiben kaum hängen. Es braucht einen Plan, der zu Ihren Kunden passt.",
+  },
+  {
+    problem: "„Ich weiß nicht, was ich posten soll.“",
+    name: "Keine Ideen für Inhalte",
+    text: "Ihr Arbeitsalltag bietet mehr Stoff, als Sie denken. Ich zeige Ihnen, was sich lohnt, und mache daraus Beiträge.",
+  },
+];
+
+const OFFERS = [
+  {
+    name: "Plan & Strategie",
+    text: "Wir legen fest, auf welchen Plattformen Sie auftreten, was Sie zeigen und wie oft gepostet wird.",
+  },
+  {
+    name: "Beiträge erstellen",
+    text: "Ich gestalte die Grafiken und schreibe die Texte, passend zu Ihrem Betrieb und Ihren Kunden.",
+  },
+  {
+    name: "Posten & Betreuen",
+    text: "Ich veröffentliche die Beiträge und kümmere mich um Kommentare und Nachrichten.",
+  },
+];
+
+const PROCESS = [
+  { title: "Erstgespräch", text: "20 Minuten, kostenlos. Ich schaue mir Ihre bisherigen Kanäle an und höre zu, was Sie erreichen möchten." },
+  { title: "Plan und Angebot", text: "Ich zeige Ihnen, welche Plattformen und Inhalte sich für Sie lohnen, und was die Betreuung kostet." },
+  { title: "Laufende Betreuung", text: "Ich erstelle und veröffentliche Ihre Beiträge, Sie konzentrieren sich auf Ihr Geschäft." },
+];
+
+const FAQ = [
+  {
+    q: "Was kostet die Betreuung Ihrer Social-Media-Kanäle?",
+    a: "Das hängt davon ab, wie viele Plattformen und Beiträge Sie brauchen. Nach dem Erstgespräch bekommen Sie ein klares Angebot, das zu Ihrem Bedarf passt.",
+  },
+  {
+    q: "Auf welchen Plattformen sollte mein Unternehmen sein?",
+    a: "Dort, wo Ihre Kunden unterwegs sind. Ein Handwerksbetrieb braucht oft andere Kanäle als eine IT-Firma. Ich betreue Instagram, Facebook, TikTok und LinkedIn und sage Ihnen im Erstgespräch, was sich für Sie lohnt.",
+  },
+  {
+    q: "Wie viel Zeit muss ich selbst investieren?",
+    a: "So wenig wie möglich. Plan, Beiträge und Veröffentlichung übernehme ich. Von Ihnen brauche ich vor allem Einblicke in Ihren Alltag, zum Beispiel Fotos von Ihrer Arbeit.",
+  },
+  {
+    q: "Wie schnell bringt Social Media Ergebnisse?",
+    a: "Social Media wirkt über Regelmäßigkeit. Ein Account, der dauerhaft aktiv ist, baut nach und nach Vertrauen und Reichweite auf. Wer schneller mehr Menschen erreichen möchte, kann das mit Werbeanzeigen ergänzen.",
+  },
+  {
+    q: "Muss ich mich lange binden?",
+    a: "Nein. Ich arbeite ohne Knebelvertrag. Wie die Zusammenarbeit genau aussieht, besprechen wir offen, bevor es losgeht.",
+  },
+];
+
+const SCHEMA = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Social Media Marketing aus Schortens",
+    "serviceType": "Social Media Marketing",
+    "description": DESCRIPTION,
+    "url": `${SITE_URL}/social-media`,
+    "provider": BUSINESS,
+    "areaServed": AREA_SERVED,
+  },
+  faqSchema(FAQ),
+];
+
+const NAV = [
+  { href: "#angebot", label: "Angebot" },
+  { href: "#ablauf", label: "Ablauf" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+
+<BaseLayout
+  title="Social Media Marketing Schortens | ScheinDigital"
+  description={DESCRIPTION}
+  path="/social-media"
+  ogTitle="Social Media Marketing aus Schortens | ScheinDigital"
+  ogDescription="Plan, Beiträge und Betreuung für Instagram, Facebook, TikTok und LinkedIn. Persönlich betreut aus Schortens."
+  schema={SCHEMA}
+  nav={NAV}
+>
+  <ServiceHero
+    h1="Social Media Marketing aus Schortens"
+    claim="Regelmäßig sichtbar, ohne selbst zu posten."
+    subline="Ich plane, erstelle und veröffentliche Ihre Beiträge, damit Ihr Unternehmen dort präsent ist, wo Ihre Kunden jeden Tag unterwegs sind."
+    listTitle="Das übernehme ich für Sie"
+    list={INCLUDED}
+  />
+
+  <ProblemSection items={PROBLEMS} />
+
+  <section id="angebot" class="section">
+    <p class="eyebrow">Angebot</p>
+    <h2>Social Media Betreuung für Ihr Unternehmen.</h2>
+
+    <p class="section-intro">Welche Plattformen und wie viel Betreuung zu Ihnen passen, klären wir im Erstgespräch.</p>
+
+    <div class="grid">
+      {OFFERS.map((o) => (
+        <article class="card offer-card">
+          <h3>{o.name}</h3>
+          <p>{o.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="pill-list" aria-label="Plattformen">
+      {PLATFORMS.map((p) => <span>{p}</span>)}
+    </div>
+
+    <div class="buttons">
+      <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
+    </div>
+  </section>
+
+  <ProcessSection heading="So starten wir mit Ihren Kanälen." steps={PROCESS} />
+
+  <FaqSection items={FAQ} heading="Häufige Fragen zu Social Media." />
+
+  <CtaSection
+    heading="Wie wirkt Ihr Unternehmen auf Social Media?"
+    lead="In 20 Minuten schaue ich mir Ihre Kanäle an und sage Ihnen, was sich lohnt. Noch kein Account? Dann besprechen wir, wo Sie am besten starten."
+    points={["Profil-Check", "Passende Plattformen", "Klare Empfehlung"]}
+  />
+</BaseLayout>

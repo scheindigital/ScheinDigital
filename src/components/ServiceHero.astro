@@ -1,0 +1,115 @@
+---
+// Kopfbereich der Leistungs-Unterseiten: kleine H1, große Aussage,
+// ein Satz, Button zum Erstgespräch und rechts eine Liste mit Häkchen.
+import { CAL_LINK } from "../data/site";
+
+interface Props {
+  h1: string;
+  claim: string;
+  subline: string;
+  listTitle: string;
+  list: string[];
+}
+
+const { h1, claim, subline, listTitle, list } = Astro.props;
+---
+
+<section class="hero hero-page">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <h1 class="hero-h1">{h1}</h1>
+
+      <p class="page-claim">{claim}</p>
+
+      <p class="subline">{subline}</p>
+
+      <div class="buttons">
+        <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
+      </div>
+
+      <p class="hero-note">Kostenlos und unverbindlich. 20 Minuten.</p>
+    </div>
+
+    <div class="included-card">
+      <p class="included-title">{listTitle}</p>
+      <ul class="included-list">
+        {list.map((item) => (
+          <li>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+              <path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-page {
+    min-height: auto;
+    padding: 160px 0 100px;
+  }
+
+  .page-claim {
+    max-width: 640px;
+    font-size: clamp(2.4rem, 10.5cqi, 4.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: #ffffff;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .included-card {
+    background:
+      radial-gradient(circle at top right, rgba(0, 213, 213, 0.16), transparent 45%),
+      rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(0, 213, 213, 0.22);
+    border-radius: 28px;
+    padding: 36px;
+  }
+
+  .included-title {
+    margin: 0 0 22px;
+    color: #f5f5f5;
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+
+  .included-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+
+  .included-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #f5f5f5;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .included-list svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #00d5d5;
+  }
+
+  @media (max-width: 800px) {
+    .hero-page {
+      padding: 115px 0 64px;
+    }
+
+    .included-card {
+      padding: 28px;
+    }
+  }
+</style>

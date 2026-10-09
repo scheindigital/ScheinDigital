@@ -1,0 +1,25 @@
+---
+// "Woran es meistens hakt": Problem-Zitat → Ursache (H3) → ein Satz Erklärung.
+interface Props {
+  items: { problem: string; name: string; text: string; link?: { href: string; text: string } }[];
+  heading?: string;
+}
+
+const { items, heading = "Woran es meistens hakt." } = Astro.props;
+---
+
+<section id="probleme" class="section">
+  <p class="eyebrow">Typische Probleme</p>
+  <h2>{heading}</h2>
+
+  <div class="grid">
+    {items.map((p) => (
+      <article class="card">
+        <p class="card-problem">{p.problem}</p>
+        <h3>{p.name}</h3>
+        <p>{p.text}</p>
+        {p.link && <a class="card-link" href={p.link.href}>{p.link.text} →</a>}
+      </article>
+    ))}
+  </div>
+</section>

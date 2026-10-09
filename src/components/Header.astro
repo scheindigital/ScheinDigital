@@ -1,20 +1,22 @@
 ---
-import { CAL_LINK } from "../data/site";
+import { CAL_LINK, SERVICE_PAGES } from "../data/site";
 
 interface Props {
   nav?: { href: string; label: string }[];
 }
 
-// Standard-Navigation: Sprungmarken auf der Startseite.
+// Standard-Navigation neben "Leistungen": Sprungmarken auf der Startseite.
 // Mit "/" davor funktionieren sie auch von Unterseiten aus.
 const DEFAULT_NAV = [
-  { href: "/#leistungen", label: "Leistungen" },
   { href: "/#ablauf", label: "Ablauf" },
   { href: "/#ansprechpartner", label: "Ansprechpartner" },
   { href: "/#faq", label: "FAQ" },
 ];
 
 const { nav = DEFAULT_NAV } = Astro.props;
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (href: string) => (href === currentPath ? "page" : undefined);
 ---
 
 <header class="site-header">
@@ -24,11 +26,70 @@ const { nav = DEFAULT_NAV } = Astro.props;
   </a>
 
   <nav class="nav" aria-label="Hauptnavigation">
+    <div class="has-dropdown">
+      <a class="nav-trigger" href="/#leistungen">
+        Leistungen
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+      <div class="dropdown">
+        <div class="dropdown-inner">
+          {SERVICE_PAGES.map((p) => (
+            <a href={p.href} aria-current={isCurrent(p.href)}>
+              <strong>{p.label}</strong>
+              <span>{p.hint}</span>
+            </a>
+          ))}
+          <a class="dropdown-all" href="/#leistungen">Alle Leistungen →</a>
+        </div>
+      </div>
+    </div>
+
     {nav.map((item) => <a href={item.href}>{item.label}</a>)}
   </nav>
 
   <a class="header-cta" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Erstgespräch buchen</a>
+
+  <details class="mobile-menu">
+    <summary>
+      <span class="sr-only">Menü</span>
+      <svg class="icon-open" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+      </svg>
+      <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+      </svg>
+    </summary>
+
+    <div class="mobile-panel">
+      <p class="mobile-label">Leistungen</p>
+      {SERVICE_PAGES.map((p) => (
+        <a href={p.href} aria-current={isCurrent(p.href)}>{p.label}</a>
+      ))}
+      <a href="/#leistungen">Alle Leistungen</a>
+
+      <hr />
+
+      {nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </div>
+  </details>
 </header>
+
+<script>
+  // Handy-Menü schließen: nach Klick auf einen Link, bei Klick daneben und mit Escape
+  const menu = document.querySelector<HTMLDetailsElement>(".mobile-menu");
+  if (menu) {
+    const close = () => menu.removeAttribute("open");
+    menu.querySelectorAll(".mobile-panel a").forEach((link) => link.addEventListener("click", close));
+    document.addEventListener("click", (event) => {
+      if (menu.open && !menu.contains(event.target as Node)) close();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+  }
+</script>
 
 <style>
   .site-header {
@@ -66,6 +127,99 @@ const { nav = DEFAULT_NAV } = Astro.props;
     color: #00d5d5;
   }
 
+  /* ---- Dropdown "Leistungen" (Desktop) ---- */
+  .has-dropdown {
+    position: relative;
+  }
+
+  .nav-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nav-trigger svg {
+    transition: transform 0.2s ease;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: -16px;
+    padding-top: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  }
+
+  .has-dropdown:hover .dropdown,
+  .has-dropdown:focus-within .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .has-dropdown:hover .nav-trigger,
+  .has-dropdown:focus-within .nav-trigger {
+    color: #00d5d5;
+  }
+
+  .has-dropdown:hover .nav-trigger svg,
+  .has-dropdown:focus-within .nav-trigger svg {
+    transform: rotate(180deg);
+  }
+
+  .dropdown-inner {
+    min-width: 300px;
+    display: grid;
+    gap: 2px;
+    padding: 8px;
+    border-radius: 18px;
+    background: rgba(12, 12, 12, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .dropdown-inner a {
+    display: grid;
+    gap: 2px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    white-space: normal;
+  }
+
+  .dropdown-inner a strong {
+    color: #f5f5f5;
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+
+  .dropdown-inner a span {
+    color: #8d8d8d;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .dropdown-inner a:hover,
+  .dropdown-inner a[aria-current="page"] {
+    background: rgba(0, 213, 213, 0.08);
+  }
+
+  .dropdown-inner a:hover strong,
+  .dropdown-inner a[aria-current="page"] strong {
+    color: #00d5d5;
+  }
+
+  .dropdown-inner .dropdown-all {
+    margin-top: 4px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0 0 12px 12px;
+    color: #00d5d5;
+    font-size: 0.85rem;
+  }
+
   .header-cta {
     display: inline-flex;
     align-items: center;
@@ -84,6 +238,80 @@ const { nav = DEFAULT_NAV } = Astro.props;
   .header-cta:hover {
     transform: translateY(-2px);
     opacity: 0.92;
+  }
+
+  /* ---- Menü (Handy) ---- */
+  .mobile-menu {
+    display: none;
+  }
+
+  .mobile-menu summary {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #f5f5f5;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-menu .icon-close,
+  .mobile-menu[open] .icon-open {
+    display: none;
+  }
+
+  .mobile-menu[open] .icon-close {
+    display: block;
+  }
+
+  .mobile-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    display: grid;
+    gap: 2px;
+    padding: 10px;
+    border-radius: 24px;
+    background: rgba(12, 12, 12, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .mobile-label {
+    margin: 6px 14px 4px;
+    color: #00d5d5;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .mobile-panel a {
+    padding: 12px 14px;
+    border-radius: 12px;
+    color: #f5f5f5;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .mobile-panel a:hover,
+  .mobile-panel a[aria-current="page"] {
+    background: rgba(0, 213, 213, 0.08);
+    color: #00d5d5;
+  }
+
+  .mobile-panel hr {
+    width: calc(100% - 28px);
+    margin: 6px auto;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   @media (max-width: 1100px) {
@@ -113,8 +341,27 @@ const { nav = DEFAULT_NAV } = Astro.props;
     }
 
     .header-cta {
+      margin-left: auto;
       padding: 10px 14px;
       font-size: 0.88rem;
+    }
+
+    .mobile-menu {
+      display: block;
+    }
+  }
+
+  /* Auf schmalen Handys nur das Logo, damit Button und Menü Platz haben */
+  @media (max-width: 520px) {
+    .brand span {
+      display: none;
+    }
+  }
+
+  @media (max-width: 350px) {
+    .header-cta {
+      padding: 10px 12px;
+      font-size: 0.82rem;
     }
   }
 </style>
