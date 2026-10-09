@@ -1,0 +1,110 @@
+---
+import { ADDRESS, EMAIL, PHONE } from "../data/site";
+
+const YEAR = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer-brand">
+    <a class="brand footer-logo" href="/" aria-label="ScheinDigital Startseite">
+      <img class="brand-logo-img" src="/sd-logo.svg" alt="" />
+      <span>ScheinDigital</span>
+    </a>
+    <p>Marketingagentur aus Schortens.</p>
+  </div>
+
+  <div class="footer-column">
+    <h3>Kontakt</h3>
+    <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+    <a href={PHONE.href}>{PHONE.display}</a>
+    <address>
+      ScheinDigital<br />
+      {ADDRESS.street}<br />
+      {ADDRESS.postalCode} {ADDRESS.city}
+    </address>
+  </div>
+
+  <div class="footer-column">
+    <h3>Rechtliches</h3>
+    <a href="/rechtliches#impressum">Impressum</a>
+    <a href="/rechtliches#datenschutz">Datenschutz</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© {YEAR} ScheinDigital. Alle Rechte vorbehalten.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 34px;
+    padding: 56px 0 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-logo {
+    margin-bottom: 18px;
+  }
+
+  .footer-brand p {
+    margin: 0 0 22px;
+    font-size: 0.95rem;
+  }
+
+  .footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-column h3 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+  }
+
+  .footer-column a {
+    color: #bdbdbd;
+    font-size: 0.95rem;
+  }
+
+  .footer-column a:hover {
+    color: #00d5d5;
+  }
+
+  address {
+    font-style: normal;
+    color: #bdbdbd;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 4px;
+  }
+
+  .footer-bottom {
+    grid-column: 1 / -1;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 1000px) {
+    .footer {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .footer {
+      width: min(100% - 28px, 1120px);
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>

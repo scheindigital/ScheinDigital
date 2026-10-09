@@ -1,0 +1,67 @@
+---
+// Ablauf in nummerierten Schritten (01, 02, 03 …).
+interface Props {
+  heading: string;
+  steps: { title: string; text: string }[];
+}
+
+const { heading, steps } = Astro.props;
+---
+
+<section id="ablauf" class="section process">
+  <p class="eyebrow">Ablauf</p>
+  <h2>{heading}</h2>
+
+  <div class="process-list">
+    {steps.map((step, i) => (
+      <article class="process-step">
+        <span>{String(i + 1).padStart(2, "0")}</span>
+        <div>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<style>
+  .process-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 36px;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 26px;
+    align-items: start;
+    padding: 28px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .process-step span {
+    color: #00d5d5;
+    font-weight: 950;
+    letter-spacing: 0.08em;
+  }
+
+  .process-step p {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 800px) {
+    .process-step {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 26px;
+    }
+
+    .process-list {
+      gap: 14px;
+    }
+  }
+</style>

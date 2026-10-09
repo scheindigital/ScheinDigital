@@ -1,0 +1,272 @@
+---
+// =====================================================================
+//  ScheinDigital – Unterseite Webdesign
+//  Texte für Probleme, Angebot, Ablauf und FAQ werden hier gepflegt.
+//  FAQ erscheint automatisch auf der Seite UND im Schema-Markup.
+// =====================================================================
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProcessSection from "../components/ProcessSection.astro";
+import FaqSection from "../components/FaqSection.astro";
+import CtaSection from "../components/CtaSection.astro";
+import { AREA_SERVED, BUSINESS, CAL_LINK, SITE_URL, faqSchema } from "../data/site";
+
+const DESCRIPTION =
+  "Webdesign aus Schortens: Ich erstelle Websites und Landingpages, die zeigen, was Sie anbieten, und Besucher zur Anfrage führen. Kostenloses Erstgespräch.";
+
+const INCLUDED = [
+  "Auf einen Blick klar, was Sie anbieten",
+  "Passt auf Handy, Tablet und Computer",
+  "Schnelle Ladezeit",
+  "Technisch sauber für Google",
+  "Ein klarer Weg zur Anfrage",
+  "Ein fester Ansprechpartner",
+];
+
+const PROBLEMS: { problem: string; name: string; text: string; link?: { href: string; text: string } }[] = [
+  {
+    problem: "„Meine Website sieht gut aus, aber keiner fragt an.“",
+    name: "Kein klarer nächster Schritt",
+    text: "Besucher müssen sofort sehen, was Sie anbieten und wie sie Sie erreichen. Sonst sind sie weg.",
+  },
+  {
+    problem: "„Auf dem Handy sieht meine Seite komisch aus.“",
+    name: "Nicht fürs Handy gebaut",
+    text: "Viele Kunden schauen zuerst auf dem Smartphone. Dort muss alles auf Anhieb passen.",
+  },
+  {
+    problem: "„Bei Google findet mich keiner.“",
+    name: "Für Google schwer lesbar",
+    text: "Ist eine Seite technisch unsauber, zeigt Google sie selten an. Dann helfen auch gute Texte nicht.",
+    link: { href: "/", text: "Mehr zu: Bei Google gefunden werden" },
+  },
+];
+
+const OFFERS = [
+  {
+    name: "Website",
+    text: "Ihr kompletter Auftritt: Leistungen, Ansprechpartner, Standort und Kontakt an einem Ort.",
+  },
+  {
+    name: "Landingpage",
+    text: "Eine einzelne Seite für ein bestimmtes Angebot, zum Beispiel für eine Werbeanzeige oder eine Aktion.",
+  },
+  {
+    name: "Überarbeitung",
+    text: "Sie haben schon eine Website? Oft reicht es, die richtigen Stellen zu verbessern, statt alles neu zu bauen.",
+  },
+];
+
+const PROCESS = [
+  { title: "Erstgespräch", text: "20 Minuten, kostenlos. Ich schaue mir Ihre Situation an und höre zu, was Sie brauchen." },
+  { title: "Konzept und Angebot", text: "Ich zeige Ihnen, wie Ihre Seite aufgebaut sein sollte, und was sie kostet." },
+  { title: "Umsetzung und Start", text: "Ich baue Ihre Website, Sie geben Feedback, dann geht sie online." },
+];
+
+const FAQ = [
+  {
+    q: "Was kostet eine Website?",
+    a: "Das hängt vom Umfang ab. Eine Landingpage ist schneller umgesetzt als eine Website mit mehreren Unterseiten. Nach dem Erstgespräch bekommen Sie ein klares Angebot, das zu Ihrem Bedarf passt.",
+  },
+  {
+    q: "Wie lange dauert es, bis meine Website online ist?",
+    a: "Das hängt vom Umfang ab und davon, wie schnell Texte und Bilder vorliegen. Den Zeitplan besprechen wir im Erstgespräch.",
+  },
+  {
+    q: "Ich habe schon eine Website. Muss alles neu gemacht werden?",
+    a: "Nicht unbedingt. Ich schaue mir Ihre aktuelle Seite an und sage Ihnen ehrlich, ob eine Überarbeitung reicht oder ein Neustart sinnvoller ist.",
+  },
+  {
+    q: "Wird meine Website auch bei Google gefunden?",
+    a: "Ich baue jede Website technisch so, dass Google sie gut lesen kann. Für gute Plätze bei Google, vor allem in Ihrer Region, gehört aber mehr dazu, zum Beispiel ein gepflegtes Google-Unternehmensprofil. Auch dabei unterstütze ich Sie.",
+  },
+  {
+    q: "Arbeiten Sie nur mit Unternehmen aus Schortens?",
+    a: "Nein. Ich betreue Unternehmen in Schortens und der Region, von Jever über Sande bis Wilhelmshaven. Die Zusammenarbeit läuft auch digital, mit Unternehmen in ganz Deutschland.",
+  },
+];
+
+const SCHEMA = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Webdesign aus Schortens",
+    "serviceType": "Webdesign",
+    "description": DESCRIPTION,
+    "url": `${SITE_URL}/webdesign`,
+    "provider": BUSINESS,
+    "areaServed": AREA_SERVED,
+  },
+  faqSchema(FAQ),
+];
+
+const NAV = [
+  { href: "/#leistungen", label: "Alle Leistungen" },
+  { href: "#angebot", label: "Angebot" },
+  { href: "#ablauf", label: "Ablauf" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+
+<BaseLayout
+  title="Webdesign Schortens: Website erstellen lassen | ScheinDigital"
+  description={DESCRIPTION}
+  path="/webdesign"
+  ogTitle="Webdesign aus Schortens | ScheinDigital"
+  ogDescription="Websites und Landingpages, die Besucher zur Anfrage führen. Persönlich betreut aus Schortens."
+  schema={SCHEMA}
+  nav={NAV}
+>
+  <section class="hero hero-page">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <h1 class="hero-h1">Webdesign aus Schortens</h1>
+
+        <p class="page-claim">Eine Website, die Anfragen bringt.</p>
+
+        <p class="subline">
+          Ich baue Ihre Website so, dass Besucher sofort verstehen, was Sie anbieten, und direkt bei Ihnen anfragen.
+        </p>
+
+        <div class="buttons">
+          <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
+        </div>
+
+        <p class="hero-note">Kostenlos und unverbindlich. 20 Minuten.</p>
+      </div>
+
+      <div class="included-card">
+        <p class="included-title">In jeder Website enthalten</p>
+        <ul class="included-list">
+          {INCLUDED.map((item) => (
+            <li>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+                <path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="probleme" class="section">
+    <p class="eyebrow">Typische Probleme</p>
+    <h2>Woran es meistens hakt.</h2>
+
+    <div class="grid">
+      {PROBLEMS.map((p) => (
+        <article class="card">
+          <p class="card-problem">{p.problem}</p>
+          <h3>{p.name}</h3>
+          <p>{p.text}</p>
+          {p.link && <a class="card-link" href={p.link.href}>{p.link.text} →</a>}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="angebot" class="section">
+    <p class="eyebrow">Angebot</p>
+    <h2>Website oder Landingpage erstellen lassen.</h2>
+
+    <p class="section-intro">Welche Lösung zu Ihnen passt, klären wir im Erstgespräch.</p>
+
+    <div class="grid">
+      {OFFERS.map((o) => (
+        <article class="card offer-card">
+          <h3>{o.name}</h3>
+          <p>{o.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="buttons">
+      <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
+    </div>
+  </section>
+
+  <ProcessSection heading="So entsteht Ihre Website." steps={PROCESS} />
+
+  <FaqSection items={FAQ} heading="Häufige Fragen zum Webdesign." />
+
+  <CtaSection
+    heading="Bringt Ihre Website Anfragen?"
+    lead="In 20 Minuten schaue ich mir Ihre Website an und sage Ihnen, was Besucher vom Anfragen abhält. Noch keine Website? Dann besprechen wir, was Sie brauchen."
+    points={["Website-Check", "Handy-Check", "Klare Empfehlung"]}
+  />
+</BaseLayout>
+
+<style>
+  .hero-page {
+    min-height: auto;
+    padding: 160px 0 100px;
+  }
+
+  .page-claim {
+    max-width: 640px;
+    font-size: clamp(2.4rem, 10.5cqi, 4.4rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    color: #ffffff;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .included-card {
+    background:
+      radial-gradient(circle at top right, rgba(0, 213, 213, 0.16), transparent 45%),
+      rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(0, 213, 213, 0.22);
+    border-radius: 28px;
+    padding: 36px;
+  }
+
+  .included-title {
+    margin: 0 0 22px;
+    color: #f5f5f5;
+    font-size: 1.15rem;
+    font-weight: 800;
+  }
+
+  .included-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+  }
+
+  .included-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: #f5f5f5;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .included-list svg {
+    flex-shrink: 0;
+    margin-top: 1px;
+    color: #00d5d5;
+  }
+
+  .offer-card h3 {
+    color: #f5f5f5;
+    font-size: 1.35rem;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 800px) {
+    .hero-page {
+      padding: 115px 0 64px;
+    }
+
+    .included-card {
+      padding: 28px;
+    }
+  }
+</style>

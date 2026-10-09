@@ -1,0 +1,76 @@
+---
+// =====================================================================
+//  Gemeinsames Grundgerüst für alle Seiten:
+//  Head (Title, Description, Canonical, Social-Vorschau, Schema),
+//  Header, Footer und globale Styles. Jede Seite übergibt nur ihre Daten.
+// =====================================================================
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_URL } from "../data/site";
+
+interface Props {
+  title: string;
+  description?: string;
+  path: string; // z. B. "/" oder "/webdesign" (ohne Schrägstrich am Ende)
+  ogTitle?: string;
+  ogDescription?: string;
+  schema?: object[];
+  nav?: { href: string; label: string }[];
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  path,
+  ogTitle = title,
+  ogDescription = description,
+  schema = [],
+  nav,
+  noindex = false,
+} = Astro.props;
+
+const url = SITE_URL + path;
+const OG_IMAGE = `${SITE_URL}/scheindigital-og.png`;
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <link rel="canonical" href={url} />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ScheinDigital" />
+    <meta property="og:title" content={ogTitle} />
+    {ogDescription && <meta property="og:description" content={ogDescription} />}
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={OG_IMAGE} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+    <meta name="twitter:image" content={OG_IMAGE} />
+
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+
+  <body>
+    <Header nav={nav} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

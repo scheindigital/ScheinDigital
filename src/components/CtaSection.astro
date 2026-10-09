@@ -1,0 +1,95 @@
+---
+// Finaler Call-to-Action am Ende jeder Seite: Erstgespräch + WhatsApp.
+import { CAL_LINK, WHATSAPP } from "../data/site";
+
+interface Props {
+  heading: string;
+  lead: string;
+  points: string[];
+  eyebrow?: string;
+}
+
+const { heading, lead, points, eyebrow = "Nächster Schritt" } = Astro.props;
+---
+
+<section id="kontakt" class="section contact-section">
+  <div class="contact-cta">
+    <p class="eyebrow">{eyebrow}</p>
+    <h2>{heading}</h2>
+
+    <p class="contact-lead">{lead}</p>
+
+    <div class="cta-points">
+      {points.map((point) => <span>{point}</span>)}
+    </div>
+
+    <div class="contact-actions">
+      <a class="primary contact-primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">
+        Kostenloses Erstgespräch buchen
+      </a>
+      <a class="secondary" href={WHATSAPP} target="_blank" rel="noopener noreferrer">
+        Lieber per WhatsApp
+      </a>
+    </div>
+
+    <p class="contact-note">Kostenlos und unverbindlich.</p>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    text-align: center;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(0, 213, 213, 0.2), transparent 55%),
+      rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(0, 213, 213, 0.22);
+    border-radius: 34px;
+    padding: 64px 48px;
+  }
+
+  .contact-cta .eyebrow,
+  .contact-cta h2,
+  .contact-lead {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-cta h2 {
+    max-width: 760px;
+  }
+
+  .contact-lead {
+    max-width: 640px;
+    font-size: 1.15rem;
+  }
+
+  .contact-cta .cta-points {
+    justify-content: center;
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 34px;
+  }
+
+  .contact-primary {
+    font-size: 1.08rem;
+    padding: 18px 30px;
+  }
+
+  .contact-note {
+    margin: 24px 0 0;
+    color: #8d8d8d;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 800px) {
+    .contact-cta {
+      grid-template-columns: 1fr;
+      padding: 28px;
+    }
+  }
+</style>
