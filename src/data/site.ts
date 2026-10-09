@@ -29,6 +29,7 @@ export const ADDRESS = {
 export const SERVICE_PAGES = [
   { href: "/webdesign", label: "Webdesign", hint: "Websites & Landingpages" },
   { href: "/social-media", label: "Social Media", hint: "Instagram, Facebook, TikTok & LinkedIn" },
+  { href: "/werbeanzeigen", label: "Werbeanzeigen", hint: "Google, Instagram, Facebook & TikTok" },
 ];
 
 export const AREA_SERVED = [

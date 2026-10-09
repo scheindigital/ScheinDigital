@@ -1,0 +1,188 @@
+---
+// =====================================================================
+//  ScheinDigital – Unterseite Werbeanzeigen (Google, Meta, TikTok)
+//  Texte für Probleme, Angebot, Ablauf und FAQ werden hier gepflegt.
+//  FAQ erscheint automatisch auf der Seite UND im Schema-Markup.
+//  Werbebudget zahlt der Kunde direkt an die Plattform.
+// =====================================================================
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceHero from "../components/ServiceHero.astro";
+import ProblemSection from "../components/ProblemSection.astro";
+import ProcessSection from "../components/ProcessSection.astro";
+import FaqSection from "../components/FaqSection.astro";
+import CtaSection from "../components/CtaSection.astro";
+import { AREA_SERVED, BUSINESS, CAL_LINK, SITE_URL, faqSchema } from "../data/site";
+
+const DESCRIPTION =
+  "Werbeanzeigen aus Schortens: Ich richte Ihre Anzeigen bei Google, Instagram, Facebook und TikTok ein, gestalte und optimiere sie. Kostenloses Erstgespräch.";
+
+const INCLUDED = [
+  "Einrichtung von Werbekonto und Kampagnen",
+  "Anzeigentexte und Grafiken",
+  "Zielgruppen, die zu Ihrem Angebot passen",
+  "Laufende Optimierung",
+  "Regelmäßige Auswertung in klaren Worten",
+  "Ein fester Ansprechpartner",
+];
+
+const PROBLEMS = [
+  {
+    problem: "„Ich habe Werbung geschaltet, aber es kam nichts dabei raus.“",
+    name: "Die falschen Menschen erreicht",
+    text: "Anzeigen, die nicht bei Ihren Kunden ankommen, kosten Geld und bringen keine Anfragen.",
+  },
+  {
+    problem: "„Ich weiß nicht, ob sich das Geld überhaupt lohnt.“",
+    name: "Keine klare Auswertung",
+    text: "Ohne regelmäßigen Blick auf die Zahlen bleibt unklar, was funktioniert. Dann wird Budget verschenkt.",
+  },
+  {
+    problem: "„Die Leute klicken, aber fragen nicht an.“",
+    name: "Die Seite dahinter überzeugt nicht",
+    text: "Führt die Anzeige auf eine Seite, die nicht zum Angebot passt, verpufft jeder Klick.",
+    link: { href: "/webdesign", text: "Mehr zu: Landingpages" },
+  },
+];
+
+const OFFERS = [
+  {
+    name: "Google",
+    text: "Ihre Anzeige erscheint, wenn jemand bei Google oder in Google Maps nach Ihrer Leistung sucht.",
+  },
+  {
+    name: "Instagram & Facebook",
+    text: "Sie erreichen Menschen in Ihrer Region, die zu Ihrem Angebot passen, direkt im Feed und in Stories.",
+  },
+  {
+    name: "TikTok",
+    text: "Kurze Videoanzeigen zwischen den Videos, die Ihre Kunden ohnehin jeden Tag schauen.",
+  },
+];
+
+const PROCESS = [
+  { title: "Erstgespräch", text: "20 Minuten, kostenlos. Ich schaue mir Ihr Angebot an und kläre, wo Werbung für Sie Sinn macht." },
+  { title: "Plan und Angebot", text: "Sie erfahren, auf welchen Plattformen ich starten würde, welches Werbebudget sinnvoll ist und was die Betreuung kostet." },
+  { title: "Start und Optimierung", text: "Ich richte die Kampagnen ein, verbessere sie laufend und zeige Ihnen regelmäßig, was sie gebracht haben." },
+];
+
+const FAQ = [
+  {
+    q: "Wie viel Werbebudget brauche ich?",
+    a: "Das hängt von Ihrer Branche, Ihrer Region und Ihrem Ziel ab. Im Erstgespräch sage ich Ihnen, mit welchem Budget ein Start sinnvoll ist.",
+  },
+  {
+    q: "Was kostet Ihre Betreuung?",
+    a: "Das hängt davon ab, auf wie vielen Plattformen Ihre Anzeigen laufen und wie umfangreich die Kampagnen sind. Nach dem Erstgespräch bekommen Sie ein klares Angebot. Das Werbebudget zahlen Sie direkt an die Plattform.",
+  },
+  {
+    q: "Google oder Social Media, was ist besser?",
+    a: "Bei Google erreichen Sie Menschen, die bereits nach Ihrer Leistung suchen. Auf Instagram, Facebook und TikTok erreichen Sie Menschen, die Sie noch nicht kennen, aber zu Ihrem Angebot passen. Oft ergänzt sich beides. Was für Sie sinnvoll ist, klären wir im Erstgespräch.",
+  },
+  {
+    q: "Wie schnell bringen Anzeigen Ergebnisse?",
+    a: "Anzeigen sind sichtbar, sobald sie freigeschaltet sind. Damit sie dauerhaft gut laufen, braucht es am Anfang Auswertung und Feinschliff. Darum kümmere ich mich.",
+  },
+  {
+    q: "Wofür brauche ich eine Landingpage?",
+    a: "Eine Landingpage ist eine Seite nur für Ihr Angebot. Besucher aus der Anzeige finden dort genau das, worauf sie geklickt haben, und können direkt anfragen. Auf Wunsch baue ich sie Ihnen gleich mit.",
+  },
+];
+
+const SCHEMA = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Google Ads & Werbeanzeigen aus Schortens",
+    "serviceType": "Google Ads und Social-Media-Werbung",
+    "description": DESCRIPTION,
+    "url": `${SITE_URL}/werbeanzeigen`,
+    "provider": BUSINESS,
+    "areaServed": AREA_SERVED,
+  },
+  faqSchema(FAQ),
+];
+
+const NAV = [
+  { href: "#angebot", label: "Angebot" },
+  { href: "#ablauf", label: "Ablauf" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+
+<BaseLayout
+  title="Google Ads & Social-Media-Werbung Schortens | ScheinDigital"
+  description={DESCRIPTION}
+  path="/werbeanzeigen"
+  ogTitle="Google Ads & Werbeanzeigen aus Schortens | ScheinDigital"
+  ogDescription="Anzeigen bei Google, Instagram, Facebook und TikTok: eingerichtet, gestaltet und laufend optimiert. Persönlich betreut aus Schortens."
+  schema={SCHEMA}
+  nav={NAV}
+>
+  <ServiceHero
+    h1="Google Ads & Werbeanzeigen aus Schortens"
+    claim="Schnell sichtbar bei den richtigen Kunden."
+    subline="Ich schalte Ihre Anzeigen bei Google, Instagram, Facebook und TikTok so, dass Ihr Budget bei den Menschen ankommt, die zu Ihrem Angebot passen."
+    listTitle="Das übernehme ich für Sie"
+    list={INCLUDED}
+  />
+
+  <ProblemSection items={PROBLEMS} />
+
+  <section id="angebot" class="section">
+    <p class="eyebrow">Angebot</p>
+    <h2>Anzeigen bei Google und in sozialen Netzwerken.</h2>
+
+    <p class="section-intro">Wo sich Werbung für Sie lohnt, klären wir im Erstgespräch.</p>
+
+    <div class="grid">
+      {OFFERS.map((o) => (
+        <article class="card offer-card">
+          <h3>{o.name}</h3>
+          <p>{o.text}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="offer-notes">
+      <p>Das Werbebudget zahlen Sie direkt an Google, Meta oder TikTok, getrennt von meiner Betreuung.</p>
+      <p>Für Anzeigen braucht es oft eine passende Landingpage. Die baue ich auf Wunsch gleich mit. <a href="/webdesign">Mehr zu Webdesign →</a></p>
+    </div>
+
+    <div class="buttons">
+      <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
+    </div>
+  </section>
+
+  <ProcessSection heading="So starten Ihre Anzeigen." steps={PROCESS} />
+
+  <FaqSection items={FAQ} heading="Häufige Fragen zu Werbeanzeigen." />
+
+  <CtaSection
+    heading="Lohnt sich Werbung für Ihr Unternehmen?"
+    lead="In 20 Minuten schaue ich mir Ihr Angebot an und sage Ihnen ehrlich, ob und wo sich Anzeigen für Sie lohnen."
+    points={["Passende Plattformen", "Budget-Einschätzung", "Ehrliche Empfehlung"]}
+  />
+</BaseLayout>
+
+<style>
+  .offer-notes {
+    display: grid;
+    gap: 4px;
+    margin-top: 28px;
+  }
+
+  .offer-notes p {
+    margin: 0;
+    max-width: 760px;
+  }
+
+  .offer-notes a {
+    color: #00d5d5;
+    font-weight: 750;
+    white-space: nowrap;
+  }
+
+  .offer-notes a:hover {
+    text-decoration: underline;
+  }
+</style>
