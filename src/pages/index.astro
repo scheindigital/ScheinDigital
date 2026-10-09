@@ -44,7 +44,7 @@ const SERVICES = [
 const FAQ = [
   {
     q: "Was passiert im kostenlosen Erstgespräch?",
-    a: "Ich schaue mir mit Ihnen Ihre Website, Ihr Google-Profil und Ihren Anfrageweg an. Danach wissen Sie, wo Sie aktuell Kunden verlieren und was sich lohnt. Das Gespräch dauert rund 15 Minuten und ist unverbindlich.",
+    a: "Ich schaue mir mit Ihnen Ihre Website, Ihr Google-Profil und Ihren Anfrageweg an. Danach wissen Sie, wo Sie aktuell Kunden verlieren und was sich lohnt. Das Gespräch dauert rund 20 Minuten und ist unverbindlich.",
   },
   {
     q: "Muss ich danach direkt Kunde werden?",
@@ -195,25 +195,27 @@ const FAQ = [
               <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
             </div>
 
-            <p class="hero-note">Kostenlos und unverbindlich. 15 Minuten.</p>
+            <p class="hero-note">Kostenlos und unverbindlich. 20 Minuten.</p>
           </div>
 
           <div class="hero-video">
-            <button class="video-player" id="heroVideo" type="button" aria-label="Video abspielen">
-              <img
-                class="video-poster"
-                src="/starter-poster.jpg"
-                alt="Leon Schein von ScheinDigital, Marketingagentur aus Schortens"
-                width="1280"
-                height="720"
-                loading="eager"
-              />
-              <span class="video-play-btn" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </span>
-            </button>
+            <div class="video-player" id="heroVideo">
+              <button class="video-trigger" type="button" aria-label="Video abspielen">
+                <img
+                  class="video-poster"
+                  src="/starter-poster.jpg"
+                  alt="Leon Schein von ScheinDigital, Marketingagentur aus Schortens"
+                  width="1280"
+                  height="720"
+                  loading="eager"
+                />
+                <span class="video-play-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -246,7 +248,7 @@ const FAQ = [
             <span>01</span>
             <div>
               <h3>Erstgespräch</h3>
-              <p>15 Minuten, kostenlos und unverbindlich.</p>
+              <p>20 Minuten, kostenlos und unverbindlich.</p>
             </div>
           </article>
 
@@ -369,7 +371,7 @@ const FAQ = [
           <h2>Wo verlieren Sie online Kunden?</h2>
 
           <p class="contact-lead">
-            In 15 Minuten schaue ich mir Ihren Online-Auftritt an und sage Ihnen, wo es hakt.
+            In 20 Minuten schaue ich mir Ihren Online-Auftritt an und sage Ihnen, wo es hakt.
           </p>
 
           <div class="cta-points">
@@ -428,20 +430,24 @@ const FAQ = [
       //  Hero-Video: Klick-to-Play (lädt erst beim Klick → schnelle Ladezeit)
       // ============================================================
       (function () {
-        const trigger = document.querySelector("#heroVideo");
-        if (!trigger) return;
-        trigger.addEventListener("click", () => {
-          const video = document.createElement("video");
-          video.src = "/starter.mp4";
-          video.controls = true;
-          video.autoplay = true;
-          video.playsInline = true;
-          video.setAttribute("playsinline", "");
-          trigger.innerHTML = "";
-          trigger.appendChild(video);
-          trigger.style.cursor = "default";
-          video.play().catch(() => {});
-        });
+        const player = document.querySelector("#heroVideo");
+        const trigger = player?.querySelector(".video-trigger");
+        if (!player || !trigger) return;
+        trigger.addEventListener(
+          "click",
+          () => {
+            const video = document.createElement("video");
+            video.src = "/starter.mp4";
+            video.poster = "/starter-poster.jpg";
+            video.controls = true;
+            video.playsInline = true;
+            video.setAttribute("playsinline", "");
+            video.setAttribute("preload", "auto");
+            trigger.replaceWith(video);
+            video.play().catch(() => {});
+          },
+          { once: true }
+        );
       })();
 
       // ============================================================
@@ -725,19 +731,28 @@ const FAQ = [
 
   .hero-video {
     width: 100%;
+    min-width: 0;
   }
 
   .video-player {
     position: relative;
-    display: block;
     width: 100%;
     aspect-ratio: 16 / 9;
-    padding: 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 18px;
     overflow: hidden;
+    background: #000;
+  }
+
+  .video-trigger {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
     cursor: pointer;
-    background: #111;
   }
 
   .video-poster {
@@ -748,7 +763,7 @@ const FAQ = [
     transition: transform 0.4s ease, filter 0.3s ease;
   }
 
-  .video-player:hover .video-poster {
+  .video-trigger:hover .video-poster {
     transform: scale(1.03);
     filter: brightness(0.85);
   }
@@ -767,21 +782,22 @@ const FAQ = [
     background: #00d5d5;
     color: #0a0a0a;
     box-shadow: 0 8px 30px rgba(0, 213, 213, 0.4);
-    transition: transform 0.25s ease, background 0.25s ease;
+    transition: transform 0.25s ease;
     padding-left: 4px;
   }
 
-  .video-player:hover .video-play-btn {
+  .video-trigger:hover .video-play-btn {
     transform: translate(-50%, -50%) scale(1.08);
   }
 
-  .video-player iframe,
-  .video-player video {
+  /* :global, weil das Video erst per JavaScript eingefügt wird */
+  .video-player :global(video) {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    border: 0;
+    object-fit: contain;
+    background: #000;
   }
 
   h2 {
