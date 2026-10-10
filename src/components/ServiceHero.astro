@@ -1,6 +1,6 @@
 ---
 // Kopfbereich der Leistungs-Unterseiten: kleine H1, große Aussage,
-// ein Satz, Button zum Erstgespräch und rechts eine Liste mit Häkchen.
+// ein Satz, Button (Standard: Erstgespräch) und rechts eine Liste mit Häkchen.
 import { CAL_LINK } from "../data/site";
 
 interface Props {
@@ -9,9 +9,20 @@ interface Props {
   subline: string;
   listTitle: string;
   list: string[];
+  cta?: { href: string; label: string };
+  note?: string;
 }
 
-const { h1, claim, subline, listTitle, list } = Astro.props;
+const {
+  h1,
+  claim,
+  subline,
+  listTitle,
+  list,
+  cta = { href: CAL_LINK, label: "Kostenloses Erstgespräch buchen" },
+  note = "Kostenlos und unverbindlich. 20 Minuten.",
+} = Astro.props;
+const external = cta.href.startsWith("http");
 ---
 
 <section class="hero hero-page">
@@ -24,10 +35,10 @@ const { h1, claim, subline, listTitle, list } = Astro.props;
       <p class="subline">{subline}</p>
 
       <div class="buttons">
-        <a class="primary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Kostenloses Erstgespräch buchen</a>
+        <a class="primary" href={cta.href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>{cta.label}</a>
       </div>
 
-      <p class="hero-note">Kostenlos und unverbindlich. 20 Minuten.</p>
+      <p class="hero-note">{note}</p>
     </div>
 
     <div class="included-card">

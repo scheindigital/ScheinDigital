@@ -7,9 +7,10 @@ interface Props {
   lead: string;
   points: string[];
   eyebrow?: string;
+  showCheckLink?: boolean;
 }
 
-const { heading, lead, points, eyebrow = "Nächster Schritt" } = Astro.props;
+const { heading, lead, points, eyebrow = "Nächster Schritt", showCheckLink = true } = Astro.props;
 ---
 
 <section id="kontakt" class="section contact-section">
@@ -33,6 +34,10 @@ const { heading, lead, points, eyebrow = "Nächster Schritt" } = Astro.props;
     </div>
 
     <p class="contact-note">Kostenlos und unverbindlich.</p>
+
+    {showCheckLink && (
+      <p class="check-hint">Noch nicht bereit für ein Gespräch? <a href="/website-check">Machen Sie den kostenlosen Website-Check →</a></p>
+    )}
   </div>
 </section>
 
@@ -84,6 +89,21 @@ const { heading, lead, points, eyebrow = "Nächster Schritt" } = Astro.props;
     margin: 24px 0 0;
     color: #8d8d8d;
     font-size: 0.95rem;
+  }
+
+  .check-hint {
+    margin: 10px auto 0;
+    max-width: 560px;
+    font-size: 0.95rem;
+  }
+
+  .check-hint a {
+    color: #00d5d5;
+    font-weight: 750;
+  }
+
+  .check-hint a:hover {
+    text-decoration: underline;
   }
 
   @media (max-width: 800px) {

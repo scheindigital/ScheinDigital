@@ -10,7 +10,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import ProcessSection from "../components/ProcessSection.astro";
 import FaqSection from "../components/FaqSection.astro";
 import CtaSection from "../components/CtaSection.astro";
-import { ADDRESS, BUSINESS, CAL_LINK, PHONE, SITE_URL, faqSchema } from "../data/site";
+import { ADDRESS, BUSINESS, CAL_LINK, MAPS_LINK, PHONE, SITE_URL, faqSchema } from "../data/site";
 
 // link: optionale Unterseite zur Leistung. Erst eintragen, wenn die Seite existiert.
 const SERVICES: { problem: string; name: string; text: string; link?: { href: string; text: string } }[] = [
@@ -67,6 +67,10 @@ const FAQ = [
     a: "Für Handwerksbetriebe, Praxen, Restaurants, Autohäuser, Dienstleister und IT-Firmen, in Schortens, in der Region und deutschlandweit.",
   },
   {
+    q: "Wo sitzt ScheinDigital und für welche Orte arbeiten Sie?",
+    a: "ScheinDigital sitzt in der Karl-Carstens-Str. 16 in 26419 Schortens im Landkreis Friesland. Ich arbeite mit Unternehmen aus Schortens, Jever, Sande, Wittmund und Wilhelmshaven und digital mit Kunden in ganz Deutschland.",
+  },
+  {
     q: "Wie schnell sieht man Ergebnisse?",
     a: "Das hängt vom Bereich ab. Eine bessere Website wirkt sofort, Anzeigen bringen schnell Reichweite, die Sichtbarkeit bei Google braucht mehr Zeit.",
   },
@@ -83,7 +87,13 @@ const SCHEMA = [
     "@context": "https://schema.org",
     ...BUSINESS,
     "description": "Marketingbüro & Marketingagentur in Schortens für Websites, Sichtbarkeit bei Google, Google Ads, Social Media Marketing und Design.",
-    "founder": { "@type": "Person", "name": "Leon Schein" },
+    "founder": {
+      "@type": "Person",
+      "name": "Leon Schein",
+      "jobTitle": "Inhaber",
+      "image": `${SITE_URL}/leon-schein.webp`,
+      "worksFor": { "@id": BUSINESS["@id"] },
+    },
     "knowsAbout": ["Local SEO", "Suchmaschinenoptimierung", "Webdesign", "Google Ads", "Social Media Marketing", "Online Marketing", "Werbedesign", "Logodesign", "Marketingberatung"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
@@ -99,7 +109,16 @@ const SCHEMA = [
       })),
     },
     "priceRange": "€€",
-    "sameAs": ["https://www.instagram.com/scheindigital"],
+    "sameAs": ["https://www.instagram.com/scheindigital", MAPS_LINK],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    "url": `${SITE_URL}/`,
+    "name": "ScheinDigital",
+    "inLanguage": "de-DE",
+    "publisher": { "@id": BUSINESS["@id"] },
   },
   faqSchema(FAQ),
 ];
@@ -210,8 +229,8 @@ const SCHEMA = [
         <p class="eyebrow">Standort</p>
         <h2>Ihr Marketingbüro in Schortens.</h2>
         <p>
-          Als Marketingagentur aus Schortens kenne ich die Region von Jever über Sande bis Wilhelmshaven.
-          Die Zusammenarbeit läuft flexibel digital, auch mit Unternehmen in ganz Deutschland.
+          ScheinDigital ist das Marketingbüro von Leon Schein in Schortens im Landkreis Friesland.
+          Ich kenne die Region von Jever über Sande bis Wilhelmshaven. Die Zusammenarbeit läuft flexibel digital, auch mit Unternehmen in ganz Deutschland.
         </p>
       </div>
 

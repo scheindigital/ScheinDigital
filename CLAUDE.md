@@ -14,10 +14,12 @@ Diese Datei liegt im öffentlichen Repo: keine Passwörter, Server-IPs, Zugangsd
 ## Technik
 
 - **Astro 6.3.7** (Update auf Astro 7 bewusst noch nicht gemacht – Major-Update, separat mit Test).
+- **Domains in Coolify:** `scheindigital.de` (Haupt-Domain) und `www.scheindigital.de` mit Weiterleitung „www → non-www“ (seit 10.10.2026).
 - **Hosting:** eigener VPS, Deployment über **Coolify** (Nixpacks: `npm install` + `npm run build`, Auslieferung über nginx). Coolify deployt nur, was auf GitHub `main` liegt.
 - **Repo:** `github.com/scheindigital/ScheinDigital`, Branch `main`, **öffentlich**.
 - **Terminbuchung:** Cal.com, Event „Kostenloses Erstgespräch“ (20 Min., seit 10.10.2026 auch in Cal.com auf 20 gestellt).
 - **Newsletter:** Formular → n8n-Webhook (self-hosted) → Brevo Double-Opt-In → Redirect `/?newsletter=bestaetigt` → Banner auf der Startseite.
+- **Website-Check (Profi-Check-Formular):** Formular auf `/website-check` → n8n-Workflow „Website-Check Anfrage“ (Webhook `/webhook/website-check`) → Code-Knoten prüft/entschärft Eingaben → Brevo-Transaktionsmail an Leon (Reply-To = Kunde) → Bestätigungsmail an den Kunden → Antwort `{"ok": true}`. n8n antwortet auch bei Fehlern mit Status 200, deshalb prüft die Seite auf `ok: true`. Brevo-Zugang in n8n: „Brevo account“.
 - **Kein Tracking, keine Cookies** (so steht es in der Datenschutzerklärung). Kein YouTube/Vimeo/Instagram-Embed ohne DSE-Anpassung.
 
 ## Aufbau des Projekts
@@ -28,7 +30,7 @@ Diese Datei liegt im öffentlichen Repo: keine Passwörter, Server-IPs, Zugangsd
 | `src/layouts/BaseLayout.astro` | Grundgerüst jeder Seite: Head (Title, Description, Canonical, OG/Twitter, Schema), Header, `<main>`, Footer |
 | `src/styles/global.css` | Globale Styles (Typo, Buttons, Sektionen, Karten, Hero-Grundgerüst, Pills) |
 | `src/components/Header.astro` | Header mit Dropdown „Leistungen“ (Desktop) und ☰-Menü (Handy, ≤800px). Auf ≤520px nur Logo ohne Schriftzug |
-| `src/components/Footer.astro` | Minimaler Footer (Marke, Kontakt, Impressum/Datenschutz). Keine Social-Links |
+| `src/components/Footer.astro` | Minimaler Footer (Marke, Leistungen aus `SERVICE_PAGES`, Kontakt, Impressum/Datenschutz). Keine Social-Links |
 | `src/components/ServiceHero.astro` | Kopfbereich der Unterseiten (kleine H1, Aussage, Subline, Button, Häkchen-Liste) |
 | `src/components/ProblemSection.astro` | „Woran es meistens hakt“: Problem-Zitat → Ursache → ein Satz |
 | `src/components/ProcessSection.astro` | Ablauf in Schritten (01, 02, 03) |
@@ -38,6 +40,9 @@ Diese Datei liegt im öffentlichen Repo: keine Passwörter, Server-IPs, Zugangsd
 | `src/pages/webdesign.astro` | Unterseite Webdesign |
 | `src/pages/social-media.astro` | Unterseite Social Media Marketing (Instagram, Facebook, TikTok, LinkedIn; keine Foto-/Videodrehs vor Ort) |
 | `src/pages/werbeanzeigen.astro` | Unterseite Google Ads & Werbeanzeigen (Google, Meta, TikTok – kein LinkedIn; Werbebudget zahlt der Kunde direkt) |
+| `src/pages/bewerten.astro` | Kurzlink `/bewerten` → leitet sofort zum Google-Bewertungsformular (`REVIEW_LINK` in `site.ts`). `noindex`, nicht in der Sitemap. QR-Code dazu liegt lokal in `druck/` (nicht im Repo) |
+| `src/pages/website-check.astro` | Kostenloser Website-Check: Selbsttest (10 Fragen, läuft nur im Browser), Auswertung mit Tipps + „Wann ein Profi lohnt“, Formular „Profi-Check anfragen“ (Antwort in 2 Werktagen). Fragen/Tipps/FAQ oben in der Datei |
+| `src/pages/llms.txt.ts` | Erzeugt `/llms.txt` (Kurzbeschreibung für KI-Systeme) aus `site.ts` |
 | `src/pages/rechtliches.astro` | Impressum + Datenschutz (`noindex`). Rechtstexte nur nach Rücksprache ändern |
 | `src/pages/sitemap.xml.ts` | Erzeugt `/sitemap.xml` automatisch aus allen Seiten in `src/pages` (außer `EXCLUDE`) |
 
@@ -91,8 +96,11 @@ Texte von Leistungen und FAQ immer **in den Daten-Listen oben in der jeweiligen 
 
 ## Offene Punkte
 
+0. **Brevo-API-Schlüssel „n8n-website“** war deaktiviert (Fehler „API Key is not enabled“, zuletzt benutzt 9. Juni 2026) und wurde am 10.10.2026 in Brevo unter „SMTP & API“ wieder aktiviert. Betrifft Website-Check **und** Newsletter. Grund der Deaktivierung unbekannt – falls es wieder passiert, dort prüfen.
 1. Google-Profil: „Social Media Marketing“ als Leistung ergänzen (siehe oben) und Kategorie „Werbeagentur“ prüfen.
 2. **Bewertungen sammeln** – wichtigster Hebel fürs Map Pack. Nur echte Kunden, auf jede Bewertung antworten.
 3. Wöchentlich ein Google-Beitrag (Muster: Problem → Tipp → Erstgespräch) und wöchentliche Case-Study-Dokumentation.
-4. Später: Case Study als Sektion/Seite, Brevo-Willkommensmail, Footer-Spalte „Leistungen“ (interne Links), Astro-7-Update separat mit Test.
-5. Rechtliches: DSE einmal mit einem Generator gegenprüfen; IONOS-AVV ablegen; USt-IdNr. ins Impressum, falls vorhanden.
+4. Bewertungen über `scheindigital.de/bewerten` bzw. den QR-Code einsammeln (WhatsApp, Rechnung, Visitenkarte).
+5. KI-Sichtbarkeit (Google KI-Übersicht, ChatGPT): Bing Places + Bing Webmaster Tools (ChatGPT sucht über Bing), Apple Business Connect, Branchenbücher mit identischem NAP (Das Örtliche, Gelbe Seiten, 11880).
+6. Später: Ratgeber-Artikel aus den Newsletter-Tipps, Case Study, Brevo-Willkommensmail, Astro-7-Update separat mit Test.
+7. Rechtliches: DSE einmal mit einem Generator gegenprüfen; IONOS-AVV ablegen; USt-IdNr. ins Impressum, falls vorhanden.

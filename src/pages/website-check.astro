@@ -1,0 +1,668 @@
+---
+// =====================================================================
+//  ScheinDigital – Kostenloser Website-Check
+//  1. Selbsttest (10 Fragen, läuft nur im Browser, nichts wird gespeichert)
+//  2. Auswertung mit Tipps zum Selbermachen + Hinweis, wo ein Profi lohnt
+//  3. Formular "Profi-Check anfragen" → n8n (E-Mail an Leon + Bestätigung)
+//  Fragen, Tipps und FAQ werden hier gepflegt.
+// =====================================================================
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceHero from "../components/ServiceHero.astro";
+import FaqSection from "../components/FaqSection.astro";
+import CtaSection from "../components/CtaSection.astro";
+import { AREA_SERVED, BUSINESS, CAL_LINK, EMAIL, SITE_URL, WEBSITE_CHECK_WEBHOOK, faqSchema } from "../data/site";
+
+const DESCRIPTION =
+  "Kostenloser Website-Check: 10 Fragen zeigen Ihnen, ob Ihre Website und Ihr Google-Auftritt Kunden kosten. Mit Tipps zum Selbermachen und Profi-Check auf Wunsch.";
+
+type Question = {
+  id: string;
+  q: string;
+  tip: string;
+  pro?: { text: string; href: string; label: string };
+};
+
+const GROUPS: { title: string; questions: Question[] }[] = [
+  {
+    title: "Bei Google gefunden werden",
+    questions: [
+      {
+        id: "profil",
+        q: "Haben Sie ein vollständig ausgefülltes Google-Unternehmensprofil mit Öffnungszeiten, Leistungen und Fotos?",
+        tip: "Legen Sie Ihr Profil unter business.google.com kostenlos an oder prüfen Sie es. Füllen Sie jedes Feld aus: Kategorie, Öffnungszeiten, Leistungen, Beschreibung und echte Fotos.",
+        pro: { text: "Welche Kategorien und Leistungen Sie nach vorne bringen, ist Erfahrungssache.", href: "/", label: "Bei Google gefunden werden" },
+      },
+      {
+        id: "bewertungen",
+        q: "Bitten Sie zufriedene Kunden regelmäßig um eine Google-Bewertung?",
+        tip: "Kopieren Sie in Ihrem Google-Profil unter „Um Rezensionen bitten“ Ihren Bewertungslink und schicken Sie ihn nach jedem Auftrag per WhatsApp oder E-Mail. Antworten Sie auf jede Bewertung.",
+      },
+      {
+        id: "suche",
+        q: "Erscheint Ihr Unternehmen, wenn Sie bei Google nach Ihrer Leistung und Ihrem Ort suchen, zum Beispiel „Elektriker Jever“?",
+        tip: "Suchen Sie in einem privaten Browserfenster, damit Google Ihre eigenen Besuche nicht mitzählt. Prüfen Sie auch die Kartenansicht.",
+        pro: { text: "Tauchen Sie nicht auf, liegt es meist an mehreren Dingen gleichzeitig: Profil, Website und Bewertungen.", href: "/", label: "Bei Google gefunden werden" },
+      },
+      {
+        id: "nap",
+        q: "Stehen Firmenname, Adresse und Telefonnummer auf Ihrer Website genau so wie in Ihrem Google-Profil?",
+        tip: "Vergleichen Sie Zeichen für Zeichen, auch Schreibweisen wie „Str.“ und „Straße“. Passen Sie Abweichungen überall an, auch in Branchenbüchern.",
+      },
+    ],
+  },
+  {
+    title: "Ihre Website überzeugt",
+    questions: [
+      {
+        id: "klarheit",
+        q: "Erkennt ein Besucher auf den ersten Blick, was Sie anbieten und in welcher Region?",
+        tip: "Zeigen Sie Ihre Startseite fünf Sekunden lang jemandem, der Ihr Unternehmen nicht kennt. Kann die Person danach sagen, was Sie anbieten und wo?",
+        pro: { text: "Eine klare Überschrift und ein Aufbau, der zur Anfrage führt, sind Handwerk.", href: "/webdesign", label: "Webdesign" },
+      },
+      {
+        id: "handy",
+        q: "Lässt sich Ihre Website auf dem Handy ohne Zoomen gut lesen und bedienen?",
+        tip: "Öffnen Sie Ihre Website auf dem eigenen Handy und versuchen Sie, sich selbst zu kontaktieren. Alles, was dabei stört, stört auch Ihre Kunden.",
+        pro: { text: "Ist die Seite nicht fürs Handy gebaut, hilft meist nur eine Überarbeitung.", href: "/webdesign", label: "Webdesign" },
+      },
+      {
+        id: "ladezeit",
+        q: "Lädt Ihre Website auf dem Handy schnell, ohne dass man warten muss?",
+        tip: "Testen Sie Ihre Seite kostenlos unter pagespeed.web.dev. Oft hilft es schon, große Bilder vor dem Hochladen zu verkleinern.",
+        pro: { text: "Bleibt der Wert schlecht, liegt es meist an der Technik hinter der Website.", href: "/webdesign", label: "Webdesign" },
+      },
+    ],
+  },
+  {
+    title: "Der Weg zur Anfrage",
+    questions: [
+      {
+        id: "button",
+        q: "Gibt es auf jeder Seite einen klaren Button wie „Termin buchen“ oder „Angebot anfragen“?",
+        tip: "Setzen Sie oben auf jede Seite einen gut sichtbaren Button mit genau einer Handlung. Wiederholen Sie ihn am Ende der Seite.",
+      },
+      {
+        id: "kontakt",
+        q: "Können Kunden Sie mit einem Klick erreichen, per Telefon, WhatsApp oder Online-Termin?",
+        tip: "Verlinken Sie Telefonnummer und WhatsApp so, dass man sie auf dem Handy direkt antippen kann. Ein Online-Kalender spart Hin und Her.",
+      },
+      {
+        id: "vertrauen",
+        q: "Zeigt Ihre Website echte Fotos von Ihnen und Ihrer Arbeit und Stimmen zufriedener Kunden?",
+        tip: "Ersetzen Sie Stockfotos durch echte Handyfotos aus Ihrem Alltag und zeigen Sie Ihre Google-Bewertungen auf der Website.",
+        pro: { text: "Regelmäßig echte Einblicke zu zeigen, gelingt am besten mit einem Plan.", href: "/social-media", label: "Social Media" },
+      },
+    ],
+  },
+];
+
+const QUESTIONS = GROUPS.flatMap((g) => g.questions);
+
+const BANDS = [
+  { min: 9, max: 10, title: "Starke Grundlage.", text: "Ihre Website und Ihr Google-Auftritt sind gut aufgestellt. Mehr Anfragen holen Sie jetzt vor allem mit Feinschliff und mehr Reichweite heraus." },
+  { min: 6, max: 8, title: "Gute Basis mit Lücken.", text: "Einiges läuft schon richtig. Die offenen Punkte unten kosten Sie aber wahrscheinlich Anfragen. Fangen Sie mit denen an, die Sie selbst umsetzen können." },
+  { min: 0, max: 5, title: "Hier geht Potenzial verloren.", text: "Mehrere Grundlagen fehlen. Die gute Nachricht: Vieles davon können Sie selbst angehen. Die Tipps unten zeigen Ihnen, wo Sie anfangen." },
+];
+
+const FAQ = [
+  {
+    q: "Was kostet der Website-Check?",
+    a: "Nichts. Der Selbsttest und der Profi-Check sind kostenlos und unverbindlich.",
+  },
+  {
+    q: "Werden meine Antworten im Selbsttest gespeichert?",
+    a: "Nein. Der Selbsttest läuft nur in Ihrem Browser. Ihre Antworten werden nur übermittelt, wenn Sie den Profi-Check anfragen.",
+  },
+  {
+    q: "Was passiert nach meiner Anfrage zum Profi-Check?",
+    a: "Sie bekommen direkt eine Bestätigung per E-Mail. Innerhalb von 2 Werktagen melde ich mich mit meiner ehrlichen Einschätzung. Ob Sie danach mit mir zusammenarbeiten, entscheiden Sie in Ruhe.",
+  },
+];
+
+const SCHEMA = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Kostenloser Website-Check",
+    "serviceType": "Website-Analyse",
+    "description": DESCRIPTION,
+    "url": `${SITE_URL}/website-check`,
+    "provider": BUSINESS,
+    "areaServed": AREA_SERVED,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  },
+  faqSchema(FAQ),
+];
+
+const NAV = [
+  { href: "#selbsttest", label: "Selbsttest" },
+  { href: "#profi-check", label: "Profi-Check" },
+  { href: "#faq", label: "FAQ" },
+];
+
+const OPTIONS = [
+  { value: "ja", label: "Ja" },
+  { value: "nein", label: "Nein" },
+  { value: "unklar", label: "Weiß nicht" },
+];
+---
+
+<BaseLayout
+  title="Kostenloser Website-Check: Selbsttest für Unternehmen | ScheinDigital"
+  description={DESCRIPTION}
+  path="/website-check"
+  ogTitle="Kostenloser Website-Check | ScheinDigital"
+  ogDescription="10 Fragen, die zeigen, ob Ihre Website und Ihr Google-Auftritt Kunden kosten. Mit Tipps zum Selbermachen."
+  schema={SCHEMA}
+  nav={NAV}
+>
+  <ServiceHero
+    h1="Kostenloser Website-Check"
+    claim="Kostet Ihre Website Sie Kunden?"
+    subline="10 kurze Fragen zeigen Ihnen, wo Ihre Website und Ihr Google-Auftritt Anfragen verschenken. Mit Tipps, die Sie direkt selbst umsetzen können."
+    listTitle="Das prüfen Sie"
+    list={[
+      "Ob Kunden Sie bei Google finden",
+      "Ihr Google-Unternehmensprofil",
+      "Wie Ihre Website auf dem Handy wirkt",
+      "Ob Besucher sofort verstehen, was Sie anbieten",
+      "Wie leicht man Sie erreicht",
+      "Ob Ihre Website Vertrauen schafft",
+    ]}
+    cta={{ href: "#selbsttest", label: "Selbsttest starten" }}
+    note="Kostenlos und ohne Anmeldung. Ihre Antworten bleiben bei Ihnen."
+  />
+
+  <section id="selbsttest" class="section">
+    <p class="eyebrow">Selbsttest</p>
+    <h2>10 Fragen, ehrliche Antworten.</h2>
+    <p class="section-intro">Beantworten Sie jede Frage so, wie es heute ist. Am Ende sehen Sie Ihr Ergebnis und konkrete Tipps.</p>
+
+    <form id="self-test" class="self-test">
+      {GROUPS.map((group) => (
+        <fieldset class="test-group">
+          <legend>{group.title}</legend>
+          {group.questions.map((question) => (
+            <div class="test-question" data-id={question.id} data-question={question.q}>
+              <p class="test-q">{question.q}</p>
+              <div class="test-options">
+                {OPTIONS.map((option) => (
+                  <label class="test-option">
+                    <input type="radio" name={question.id} value={option.value} />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+          ))}
+        </fieldset>
+      ))}
+
+      <div class="buttons">
+        <button class="primary" type="submit">Ergebnis anzeigen</button>
+      </div>
+      <p class="test-hint" id="test-hint" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section id="ergebnis" class="section result" hidden>
+    <p class="eyebrow">Ihr Ergebnis</p>
+    <h2><span id="result-score">0</span> von 10 Punkten.</h2>
+
+    {BANDS.map((band) => (
+      <div class="result-band" data-min={band.min} data-max={band.max} hidden>
+        <p class="result-title">{band.title}</p>
+        <p>{band.text}</p>
+      </div>
+    ))}
+
+    <div class="tips">
+      {QUESTIONS.map((question) => (
+        <article class="card tip-card" data-tip={question.id} hidden>
+          <p class="card-problem">{question.q}</p>
+          <h3>Das können Sie selbst tun</h3>
+          <p>{question.tip}</p>
+          {question.pro && (
+            <p class="tip-pro">
+              <strong>Wann ein Profi lohnt:</strong> {question.pro.text} <a href={question.pro.href}>Mehr zu {question.pro.label} →</a>
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+
+    <div class="buttons">
+      <a class="primary" href="#profi-check">Profi-Check anfragen</a>
+      <a class="secondary" href={CAL_LINK} target="_blank" rel="noopener noreferrer">Lieber direkt ein Erstgespräch</a>
+    </div>
+  </section>
+
+  <section id="profi-check" class="section">
+    <div class="check-card">
+      <div class="check-copy">
+        <p class="eyebrow">Profi-Check</p>
+        <h2>Lieber gleich vom Profi prüfen lassen?</h2>
+        <p>
+          Ich schaue mir Ihre Website und Ihren Google-Auftritt persönlich an und melde mich innerhalb von 2 Werktagen mit einer ehrlichen Einschätzung.
+        </p>
+        <div class="founder-points">
+          <span>Kostenlos</span>
+          <span>Persönlich geprüft</span>
+          <span>Antwort in 2 Werktagen</span>
+        </div>
+      </div>
+
+      <form id="check-form" class="check-form" data-endpoint={WEBSITE_CHECK_WEBHOOK}>
+        <label class="field">
+          <span>Ihre Website</span>
+          <input name="website" type="text" inputmode="url" autocomplete="url" placeholder="www.ihre-firma.de" required />
+        </label>
+        <label class="field">
+          <span>Ihr Name</span>
+          <input name="name" type="text" autocomplete="name" required />
+        </label>
+        <label class="field">
+          <span>Ihre E-Mail-Adresse</span>
+          <input name="email" type="email" autocomplete="email" placeholder="ihre@email.de" required />
+        </label>
+        <label class="field">
+          <span>Was ist Ihnen wichtig? (optional)</span>
+          <textarea name="message" rows="3" placeholder="Zum Beispiel: Wir möchten mehr Anfragen über Google."></textarea>
+        </label>
+
+        <div class="hp" aria-hidden="true">
+          <label>Bitte leer lassen <input name="fax" type="text" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <p class="form-privacy">
+          Ihre Angaben und, falls ausgefüllt, Ihre Antworten aus dem Selbsttest nutze ich nur für Ihre Anfrage. Mehr dazu in der <a href="/rechtliches#datenschutz">Datenschutzerklärung</a>.
+        </p>
+
+        <button class="primary" type="submit">Profi-Check anfragen</button>
+        <p class="form-msg" id="check-msg" role="status" aria-live="polite" data-fallback={EMAIL}></p>
+      </form>
+    </div>
+  </section>
+
+  <FaqSection items={FAQ} heading="Häufige Fragen zum Website-Check." />
+
+  <CtaSection
+    heading="Lieber direkt sprechen?"
+    lead="In 20 Minuten schaue ich mir Ihren Online-Auftritt gemeinsam mit Ihnen an und sage Ihnen, wo es hakt."
+    points={["Website-Check", "Google-Check", "Klare Empfehlung"]}
+    showCheckLink={false}
+  />
+</BaseLayout>
+
+<script>
+  // ============================================================
+  //  Selbsttest auswerten (läuft nur im Browser, nichts wird gesendet)
+  // ============================================================
+  const test = document.querySelector<HTMLFormElement>("#self-test");
+  const result = document.querySelector<HTMLElement>("#ergebnis");
+  const hint = document.querySelector<HTMLElement>("#test-hint");
+  let selfTest: { score: number; answers: { frage: string; antwort: string }[] } | null = null;
+
+  const LABELS: Record<string, string> = { ja: "Ja", nein: "Nein", unklar: "Weiß nicht" };
+
+  test?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const questions = Array.from(test.querySelectorAll<HTMLElement>(".test-question"));
+    const open = questions.filter((q) => !q.querySelector("input:checked"));
+
+    questions.forEach((q) => q.classList.toggle("is-open", open.includes(q)));
+    if (open.length > 0) {
+      if (hint) hint.textContent = `Bitte beantworten Sie noch ${open.length === 1 ? "1 Frage" : `${open.length} Fragen`}.`;
+      open[0].scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    if (hint) hint.textContent = "";
+
+    const answers = questions.map((q) => ({
+      id: q.dataset.id ?? "",
+      frage: q.dataset.question ?? "",
+      wert: q.querySelector<HTMLInputElement>("input:checked")?.value ?? "unklar",
+    }));
+    const score = answers.filter((a) => a.wert === "ja").length;
+    selfTest = { score, answers: answers.map((a) => ({ frage: a.frage, antwort: LABELS[a.wert] })) };
+
+    if (!result) return;
+    result.querySelector("#result-score")!.textContent = String(score);
+    result.querySelectorAll<HTMLElement>(".result-band").forEach((band) => {
+      band.hidden = !(score >= Number(band.dataset.min) && score <= Number(band.dataset.max));
+    });
+    result.querySelectorAll<HTMLElement>(".tip-card").forEach((card) => {
+      const answer = answers.find((a) => a.id === card.dataset.tip);
+      card.hidden = !answer || answer.wert === "ja";
+    });
+    result.hidden = false;
+    result.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  test?.addEventListener("change", (event) => {
+    const question = (event.target as HTMLElement).closest(".test-question");
+    question?.classList.remove("is-open");
+  });
+
+  // ============================================================
+  //  Profi-Check anfragen -> n8n-Webhook
+  //  (n8n schickt die Anfrage an Leon und eine Bestätigung an den Kunden)
+  // ============================================================
+  const form = document.querySelector<HTMLFormElement>("#check-form");
+  const msg = document.querySelector<HTMLElement>("#check-msg");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity() || !msg) return;
+
+    const data = new FormData(form);
+    const success = () => {
+      form.reset();
+      msg.textContent = "Danke! Eine Bestätigung ist per E-Mail unterwegs. Ich melde mich innerhalb von 2 Werktagen.";
+      msg.className = "form-msg ok";
+    };
+
+    // Spam-Schutz: Dieses Feld ist für Menschen unsichtbar
+    if (data.get("fax")) return success();
+
+    msg.textContent = "Wird gesendet …";
+    msg.className = "form-msg";
+
+    try {
+      const res = await fetch(form.dataset.endpoint ?? "", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          website: String(data.get("website") ?? "").trim(),
+          name: String(data.get("name") ?? "").trim(),
+          email: String(data.get("email") ?? "").trim(),
+          message: String(data.get("message") ?? "").trim(),
+          selfTest,
+          source: "website-check",
+          timestamp: new Date().toISOString(),
+        }),
+      });
+      // n8n antwortet auch bei Fehlern mit Status 200 – erst {"ok": true} am Ende
+      // des Ablaufs bestätigt, dass beide E-Mails verschickt wurden.
+      const answer = await res.json().catch(() => null);
+      if (!res.ok || answer?.ok !== true) throw new Error("Request failed");
+      success();
+    } catch {
+      msg.textContent = `Da ist etwas schiefgelaufen. Bitte schreiben Sie mir direkt an ${msg.dataset.fallback}.`;
+      msg.className = "form-msg error";
+    }
+  });
+</script>
+
+<style>
+  /* ---- Selbsttest ---- */
+  .self-test {
+    display: grid;
+    gap: 18px;
+    margin-top: 34px;
+  }
+
+  .test-group {
+    margin: 0;
+    padding: 28px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: grid;
+    gap: 6px;
+  }
+
+  .test-group legend {
+    float: left;
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 0;
+    color: #00d5d5;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+
+  .test-question {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .test-question.is-open .test-q {
+    color: #ff9b9b;
+  }
+
+  .test-q {
+    margin: 0;
+    color: #f5f5f5;
+    font-size: 1.02rem;
+    font-weight: 650;
+    line-height: 1.5;
+  }
+
+  .test-options {
+    display: flex;
+    gap: 8px;
+  }
+
+  .test-option {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .test-option input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  .test-option span {
+    display: inline-block;
+    min-width: 64px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #bdbdbd;
+    font-size: 0.92rem;
+    font-weight: 750;
+    text-align: center;
+    white-space: nowrap;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .test-option:hover span {
+    border-color: rgba(0, 213, 213, 0.5);
+  }
+
+  .test-option input:focus-visible + span {
+    outline: 2px solid #00d5d5;
+    outline-offset: 2px;
+  }
+
+  .test-option input:checked + span {
+    background: #00d5d5;
+    border-color: #00d5d5;
+    color: #050505;
+  }
+
+  .test-hint {
+    margin: 0;
+    min-height: 1.2em;
+    color: #ff9b9b;
+    font-weight: 650;
+  }
+
+  /* ---- Ergebnis ---- */
+  .result-band {
+    max-width: 760px;
+  }
+
+  .result-title {
+    margin: 0 0 6px;
+    color: #f5f5f5;
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
+
+  .tips {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 30px;
+  }
+
+  .tip-card p:not(.card-problem) {
+    margin: 0;
+  }
+
+  .tip-pro {
+    margin-top: 14px !important;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.98rem;
+  }
+
+  .tip-pro strong {
+    color: #f5f5f5;
+  }
+
+  .tip-pro a {
+    color: #00d5d5;
+    font-weight: 750;
+    white-space: nowrap;
+  }
+
+  /* ---- Profi-Check ---- */
+  .check-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    background:
+      radial-gradient(circle at top left, rgba(0, 213, 213, 0.14), transparent 40%),
+      rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 34px;
+    padding: 52px;
+  }
+
+  .check-copy h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 16px;
+  }
+
+  .check-copy p {
+    margin: 0;
+  }
+
+  .check-form {
+    display: grid;
+    gap: 14px;
+  }
+
+  .field {
+    display: grid;
+    gap: 6px;
+  }
+
+  .field span {
+    color: #f5f5f5;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.055);
+    color: #f5f5f5;
+    border-radius: 16px;
+    padding: 14px 16px;
+    font: inherit;
+    outline: none;
+    resize: vertical;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: #777;
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    border-color: rgba(0, 213, 213, 0.55);
+    box-shadow: 0 0 0 4px rgba(0, 213, 213, 0.08);
+  }
+
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-privacy {
+    margin: 0;
+    color: #8d8d8d;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .form-privacy a {
+    color: #00d5d5;
+  }
+
+  .check-form .primary {
+    justify-self: start;
+  }
+
+  .form-msg {
+    margin: 0;
+    min-height: 1.2em;
+    font-size: 0.95rem;
+  }
+
+  .form-msg.ok {
+    color: #00d5d5;
+  }
+
+  .form-msg.error {
+    color: #ff6b6b;
+  }
+
+  @media (max-width: 1000px) {
+    .check-card {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .test-group {
+      padding: 22px 20px;
+    }
+
+    .test-question {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .test-option span {
+      min-width: 0;
+      padding: 9px 12px;
+    }
+
+    .tips {
+      grid-template-columns: 1fr;
+    }
+
+    .check-card {
+      padding: 28px;
+    }
+  }
+</style>

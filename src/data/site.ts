@@ -14,6 +14,12 @@ export const EMAIL = "leon@scheindigital.de";
 // "Um Rezensionen bitten"). scheindigital.de/bewerten leitet hierhin weiter.
 export const REVIEW_LINK = "https://g.page/r/CRzqdSROGTLkEBM/review";
 
+// Google-Maps-Eintrag (Place-ID aus dem Unternehmensprofil) für das Schema-Markup
+export const MAPS_LINK = "https://www.google.com/maps/place/?q=place_id:ChIJW3PTRAaNtkcRHOp1JE4ZMuQ";
+
+// n8n-Webhook für Anfragen zum Profi-Check auf /website-check
+export const WEBSITE_CHECK_WEBHOOK = "https://n8n.scheindigital.de/webhook/website-check";
+
 export const PHONE = {
   display: "+49 176 41880516",
   href: "tel:+4917641880516",
@@ -69,6 +75,7 @@ export const BUSINESS = {
     "longitude": 7.958019,
   },
   "areaServed": AREA_SERVED,
+  "hasMap": MAPS_LINK,
 };
 
 export type FaqItem = { q: string; a: string };
