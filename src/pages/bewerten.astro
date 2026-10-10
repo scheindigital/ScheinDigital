@@ -1,0 +1,49 @@
+---
+// =====================================================================
+//  scheindigital.de/bewerten – leitet direkt zum Google-Bewertungsformular.
+//  Kurzer Link für WhatsApp, Rechnung und QR-Code. Nicht in der Sitemap.
+//  Ziel-Link wird in src/data/site.ts (REVIEW_LINK) gepflegt.
+// =====================================================================
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { REVIEW_LINK } from "../data/site";
+---
+
+<BaseLayout title="Bewertung abgeben | ScheinDigital" path="/bewerten" noindex>
+  <meta slot="head" http-equiv="refresh" content={`0; url=${REVIEW_LINK}`} />
+
+  <section class="review-redirect">
+    <h1>Danke, dass Sie sich kurz Zeit nehmen.</h1>
+    <p>Sie werden jetzt zu Google weitergeleitet. Falls nicht, klicken Sie hier:</p>
+    <div class="buttons">
+      <a class="primary" href={REVIEW_LINK}>Jetzt bei Google bewerten</a>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ url: REVIEW_LINK }}>
+    window.location.replace(url);
+  </script>
+</BaseLayout>
+
+<style>
+  .review-redirect {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 0 80px;
+  }
+
+  h1 {
+    max-width: 700px;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+    margin: 0 0 18px;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+</style>

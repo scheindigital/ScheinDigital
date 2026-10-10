@@ -6,7 +6,7 @@
 // =====================================================================
 import { SITE_URL } from "../data/site";
 
-const EXCLUDE = ["/rechtliches", "/404"];
+const EXCLUDE = ["/rechtliches", "/bewerten", "/404"];
 
 export function GET() {
   const paths = Object.keys(import.meta.glob("./**/*.astro"))

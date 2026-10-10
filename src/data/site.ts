@@ -10,6 +10,10 @@ export const CAL_LINK = "https://cal.com/leon-schein/erstgespraech";
 export const WHATSAPP = "https://wa.me/4917641880516";
 export const EMAIL = "leon@scheindigital.de";
 
+// Direktlink zum Google-Bewertungsformular (aus dem Unternehmensprofil:
+// "Um Rezensionen bitten"). scheindigital.de/bewerten leitet hierhin weiter.
+export const REVIEW_LINK = "https://g.page/r/CRzqdSROGTLkEBM/review";
+
 export const PHONE = {
   display: "+49 176 41880516",
   href: "tel:+4917641880516",

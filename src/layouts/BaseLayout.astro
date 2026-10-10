@@ -64,6 +64,8 @@ const OG_IMAGE = `${SITE_URL}/scheindigital-og.png`;
     <meta name="twitter:image" content={OG_IMAGE} />
 
     {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+
+    <slot name="head" />
   </head>
 
   <body>

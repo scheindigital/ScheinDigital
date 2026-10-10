@@ -1,5 +1,5 @@
 ---
-import { ADDRESS, EMAIL, PHONE } from "../data/site";
+import { ADDRESS, EMAIL, PHONE, SERVICE_PAGES } from "../data/site";
 
 const YEAR = new Date().getFullYear();
 ---
@@ -12,6 +12,12 @@ const YEAR = new Date().getFullYear();
     </a>
     <p>Marketingagentur aus Schortens.</p>
   </div>
+
+  <nav class="footer-column" aria-label="Leistungen">
+    <h3>Leistungen</h3>
+    <a href="/">Bei Google gefunden werden</a>
+    {SERVICE_PAGES.map((p) => <a href={p.href}>{p.label}</a>)}
+  </nav>
 
   <div class="footer-column">
     <h3>Kontakt</h3>
@@ -40,7 +46,7 @@ const YEAR = new Date().getFullYear();
     width: min(1120px, calc(100% - 40px));
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr 1fr 0.8fr;
     gap: 34px;
     padding: 56px 0 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
