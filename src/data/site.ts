@@ -27,7 +27,7 @@ export const PHONE = {
 };
 
 export const ADDRESS = {
-  street: "Karl-Carstens-Str. 16",
+  street: "Karl-Carstens-Straße 16",
   postalCode: "26419",
   city: "Schortens",
   region: "Niedersachsen",

@@ -74,7 +74,7 @@ Texte von Leistungen und FAQ immer **in den Daten-Listen oben in der jeweiligen 
 
 ## Arbeitsregeln für Texte
 
-- Kundentexte mit **„Sie“**, Perspektive **„ich“** (Solo-Unternehmer, persönlicher Ansprechpartner).
+- Kundentexte mit **„Sie“**, Perspektive **„ich“** (Solo-Unternehmer, persönlicher Ansprechpartner). Gilt auch für alle E-Mails und Vorlagen (Brevo, n8n). Duzen nur, wenn der Kunde es ausdrücklich angeboten hat. Die Brevo-Vorlagen #1 bis #4 wurden am 10.10.2026 auf „Sie“ umgestellt.
 - **Keine Emojis**, **keine Fachbegriffe** für Kunden („bei Google gefunden werden“ statt „Local SEO“).
 - **Keine erfundenen Zahlen, Referenzen oder Versprechen.** Aussagen über Leons Angebot nur, wenn er sie bestätigt hat – im Zweifel nachfragen und in der Zusammenfassung zur Prüfung markieren.
 - **Kein versteckter Text / Cloaking.** Keywords nur in Title, Meta, Schema, Alt-Texten und sichtbarem Text. Schreibweise immer „Marketingagentur“.
@@ -87,7 +87,7 @@ Texte von Leistungen und FAQ immer **in den Daten-Listen oben in der jeweiligen 
 - Profilname nur „ScheinDigital“. Beschreibung ohne URLs/Telefonnummern, Leistungsname max. 120 Zeichen.
 - Leistungen im Profil: Website-Erstellung & -Bearbeitung, Landingpages & Onepager, Logo- & Grafikdesign, Marketingberatung, Bei Google gefunden werden, Google Ads. **„Social Media Marketing“ fehlt noch:** Am 10.10.2026 lehnte Google das Speichern mehrfach mit „Es gab ein Problem“ ab (mit und ohne VPN, unter zwei Kategorien).
 - Google meldet im Dashboard „Ihre Unternehmenskategorie wurde von Google aktualisiert“ – „Werbeagentur“ fehlt in der aktuellen Kategorienliste. Klären.
-- Search Console: Domain-Property. Am 10.10.2026 Indexierung für `/webdesign`, `/social-media`, `/werbeanzeigen` beantragt und `sitemap.xml` neu eingereicht.
+- Search Console: Domain-Property (Google-Konto `authuser=1`). Am 10.10.2026 Indexierung für `/webdesign`, `/social-media`, `/werbeanzeigen`, `/website-check` und die Startseite beantragt und `sitemap.xml` neu eingereicht.
 
 ## Wettbewerb & Case Study
 
